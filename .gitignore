@@ -3,6 +3,10 @@
 DisasterDeclarationsSummaries.csv
 .DS_Store
 
+# Generated runtime directories — never commit these
+chroma_db/
+frontend/.vite/
+
 # Generated ML outputs — these ARE tracked so teammates can run the backend
 !disaster_forecast/prophet_state_forecasts.json
 !backend/data/forecast_profiles.json
