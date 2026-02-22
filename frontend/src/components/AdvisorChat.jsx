@@ -1,9 +1,16 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Send, Sparkles } from 'lucide-react';
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+const cn = (...inputs) => twMerge(clsx(inputs));
+
 const AdvisorChat = () => {
   const [messages, setMessages] = useState([
     { role: 'assistant', content: 'Welcome to the Disaster Workforce Advisor. I\'ve analyzed the current scenario. How can I help you understand the labor market impact?' }
   ]);
   const [input, setInput] = useState('');
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });

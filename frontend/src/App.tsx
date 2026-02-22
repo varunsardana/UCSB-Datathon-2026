@@ -1,39 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Search, 
-  Filter, 
-  Map as MapIcon, 
-  BarChart3, 
-  MessageSquare, 
-  Info, 
-  ChevronLeft, 
-  ChevronRight,
-  TrendingDown,
-  TrendingUp,
-  Clock,
-  Users,
-  Send,
-  Sparkles,
-  Menu,
-  X
-} from 'lucide-react';
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer, 
-  Legend,
-  BarChart,
-  Bar,
-  Cell,
-  ReferenceLine
-} from 'recharts';
-import { motion, AnimatePresence } from 'motion/react';
-import { clsx, type ClassValue } from 'clsx';
+import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { Menu, X, Clock } from 'lucide-react';
 
 import { APP_NAME, PRIMARY_COLOR } from './constants';
 import { 
@@ -53,7 +21,7 @@ import AnalyticsTabs from './components/AnalyticsTabs';
 import AdvisorChat from './components/AdvisorChat';
 
 // Utility for tailwind classes
-function cn(...inputs: ClassValue[]) {
+function cn(...inputs: any[]) {
   return twMerge(clsx(inputs));
 }
 

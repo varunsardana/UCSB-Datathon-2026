@@ -1,5 +1,57 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { X } from 'lucide-react';
+//Below are imports for the map to work and look good
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import L from 'leaflet';
+
+
+const cn = (...inputs) => twMerge(clsx(inputs));
+
+{ /*Map icon for disasters*/ }
+const getSeverityIcon = (severity) => {
+  const severityClass = severity === 'major' ? 'bg-red-500' : 'bg-orange-500';
+  
+  return new L.divIcon({
+    html: `
+      <div class="${severityClass} w-4 h-4 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+        <div class="w-2 h-2 bg-white rounded-full" />
+      </div>
+    `,
+    className: 'custom-div-icon bg-transparent border-0 p-0', // removes leaflet defaults
+    iconSize: [15, 15],
+    iconAnchor: [12, 24],
+  });
+};
+
 const DisasterMap = () => {
-  const [selectedDisaster, setSelectedDisaster] = useState<DisasterEvent | null>(MOCK_DISASTERS[0]);
+  const [disasters, setDisasters] = useState([]);
+  const [selectedDisaster, setSelectedDisaster] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/disasters")
+      .then(res => res.json())
+      .then(data => setDisasters(data));
+  }, []);
+
+  //Helper: fit map to disasters when they load
+  const FitBoundsOnData = ({ points }) => {
+    const map = useMap();
+
+    useEffect(() => {
+      if (!points || points.length === 0) return;
+
+      const bounds = L.latLngBounds(
+        points.map((p) => [p.lat, p.lng]),
+      );
+      map.fitBounds(bounds, { padding: [40, 40] });
+    }, [points, map]);
+
+    return null;
+  };
 
   return (
     <div className="mb-6 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -11,39 +63,51 @@ const DisasterMap = () => {
         <div className="flex gap-2">
           <div className="text-xs font-medium px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
             {/* Backend API: GET /api/disasters */}
-            {MOCK_DISASTERS.length} Events Loaded
+            {disasters.length} Events Loaded
           </div>
         </div>
       </div>
       <div className="relative h-[400px] w-full bg-slate-100 dark:bg-slate-950 overflow-hidden">
-        {/* Placeholder for interactive map (e.g. Leaflet/Mapbox/D3) */}
-        <div className="absolute inset-0 opacity-40 grayscale">
-          <img 
-            src="..\images\USMap.svg"
-            alt="Map Background" 
-            className="w-full h-full object-cover bg-white"
-            referrerPolicy="no-referrer"
+        {/* Interactive map */}
+        <MapContainer
+          center={[37.8, -96]} // fallback center (roughly US)
+          zoom={4}
+          scrollWheelZoom={true}
+          className="h-full w-full"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-        </div>
-        
-        {/* Mock Markers */}
-        {MOCK_DISASTERS.map(d => (
-          <motion.button
-            key={d.id}
-            whileHover={{ scale: 1.2 }}
-            onClick={() => setSelectedDisaster(d)}
-            className={cn(
-              "absolute w-6 h-6 rounded-full border-2 border-white shadow-lg flex items-center justify-center transition-colors",
-              d.severity === 'Critical' ? "bg-red-500" : "bg-orange-500"
-            )}
-            style={{ 
-              left: `${(d.lng + 125) * 2}%`, 
-              top: `${(50 - d.lat) * 4}%` 
-            }}
-          >
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-          </motion.button>
-        ))}
+
+          {/* Auto-fit to disasters when loaded */}
+          {disasters.length > 0 && <FitBoundsOnData points={disasters} />}
+
+          {/* Disaster markers */}
+          {disasters.map((d) => (
+            <Marker
+              key={d.disaster_id}
+              position={[d.lat, d.lng]}
+              icon={getSeverityIcon(d.severity)}
+              eventHandlers={{
+                click: () => setSelectedDisaster(d),
+              }}
+            >
+              {/* Popup on marker itself on click */}
+              <Popup>
+                <div className="text-sm">
+                  <div className="font-semibold">{d.title}</div>
+                  <div className="text-xs text-slate-500">
+                    {d.state} • {d.county}
+                  </div>
+                  <div className="text-xs text-slate-500">
+                    {d.declaration_date}
+                  </div>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
 
         {/* Tooltip / Info Overlay */}
         <AnimatePresence>
@@ -65,25 +129,25 @@ const DisasterMap = () => {
                   <X size={16} />
                 </button>
               </div>
-              <h4 className="font-bold text-slate-900 dark:text-white">{selectedDisaster.name}</h4>
-              <p className="text-xs text-slate-500 mb-3">{selectedDisaster.region} • {selectedDisaster.date}</p>
+              <h4 className="font-bold text-slate-900 dark:text-white">{selectedDisaster.title}</h4>
+              <p className="text-xs text-slate-500 mb-3">{selectedDisaster.state} • {selectedDisaster.county} • {selectedDisaster.declaration_date}</p>
               
               <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-                <div>
+                {/* <div>
                   <p className="text-[10px] text-slate-400 uppercase font-bold">Displaced Workers</p>
                   <p className="text-sm font-bold text-primary">{selectedDisaster.displacedWorkers.toLocaleString()}</p>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <p className="text-[10px] text-slate-400 uppercase font-bold">Main Industry</p>
                   <p className="text-sm font-bold text-slate-700 dark:text-slate-200">{selectedDisaster.mostAffectedIndustry}</p>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Legend */}
-        <div className="absolute top-6 left-6 rounded-lg border border-slate-200 bg-white/80 p-3 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/80">
+        {/* <div className="absolute top-6 left-6 rounded-lg border border-slate-200 bg-white/80 p-3 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/80">
           <h5 className="text-[10px] font-bold uppercase text-slate-500 mb-2">Job Loss Intensity</h5>
           <div className="flex items-center gap-1 h-2 w-32 rounded-full overflow-hidden">
             <div className="h-full w-1/4 bg-blue-100" />
@@ -95,7 +159,7 @@ const DisasterMap = () => {
             <span>Low</span>
             <span>Critical</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

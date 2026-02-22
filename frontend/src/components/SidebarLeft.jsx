@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
-import motion from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
+import { Search, Filter } from 'lucide-react';
 
-const SidebarLeft = (isOpen) => {
-  const [width, setWidth] = useState(280);
+const SidebarLeft = ({ isOpen, toggle }) => {
+  const [width, setWidth] = useState(250);
   const isResizing = useRef(false); // Whether the user is dragging or not
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!isResizing.current) return;
-      const newWidth = Math.min(Math.max(e.clientX, 200), 500); // Clamp between 200–500px
+      const newWidth = Math.min(Math.max(e.clientX, 180), 400); // Clamp between 180–400px
       setWidth(newWidth);
     };
 

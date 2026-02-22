@@ -1,3 +1,7 @@
+import React from 'react';
+import { Map as MapIcon, Info } from 'lucide-react';
+import { APP_NAME } from '../constants';
+
 const Navbar = () => (
   <header className="flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-6 dark:border-slate-800 dark:bg-slate-900 z-50">
     <div className="flex items-center gap-3">

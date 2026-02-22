@@ -1,5 +1,25 @@
+import React, { useState } from 'react';
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ReferenceLine,
+  BarChart,
+  Bar
+} from 'recharts';
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { MOCK_DISPLACEMENT_CURVE, MOCK_INDUSTRY_IMPACT } from '../mockData';
+
+const cn = (...inputs) => twMerge(clsx(inputs));
+
 const AnalyticsTabs = () => {
-  const [activeTab, setActiveTab] = useState<'curve' | 'impact' | 'outlook'>('curve');
+  const [activeTab, setActiveTab] = useState('curve');
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
