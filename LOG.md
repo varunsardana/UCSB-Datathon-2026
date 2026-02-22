@@ -18,6 +18,29 @@
 - Excluded EM (Emergency) and FM (Fire Management) — too small to affect employment
 - Still left us with 2,638 unique disasters and 45,197 county-level rows
 
+## Known Limitations / Weaknesses
+
+### Baseline year may not be "normal"
+- If the prior year had its own disaster or economic event (e.g., COVID 2020), the baseline is inflated
+- This makes the current disaster look less impactful than it actually is
+- Ideal fix: average multiple baseline years instead of just one
+
+### Fixed 6-month window doesn't fit all disaster types
+- Wildfires may displace people in week 1, floods might take 9+ months to show full economic damage
+- One fixed window for all disaster types is a simplification
+- Ideal fix: vary the window per disaster type based on historical patterns
+
+### Job ending ≠ disaster-caused job loss
+- Someone might quit for a better job, retire, or relocate independently of the disaster
+- We count ALL job endings, not just disaster-caused ones
+- Baseline subtraction helps but doesn't fully solve this — some noise remains
+
+### Small numbers problem
+- Some FIPS/industry combos have only 2-3 job endings normally
+- Going from 2 to 5 endings could be random variation, not disaster signal
+- With counts this small, the model may learn noise instead of real patterns
+- Ideal fix: statistical significance tests to filter out low-confidence rows
+
 ## Key Findings
 
 ### Hurricanes Show Negative Excess Exits
