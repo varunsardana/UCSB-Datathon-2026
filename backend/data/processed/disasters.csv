@@ -1,0 +1,6 @@
+disaster_id,disaster_type,declaration_date,state,county,fips_code,lat,lng,severity,title
+4607,wildfire,2025-01-08,CA,Los Angeles,06037,34.0522,-118.2437,major,CA-2025-Palisades Eaton Wildfire
+4558,hurricane,2024-09-26,FL,Miami-Dade,12086,25.7617,-80.1918,major,FL-2024-Hurricane Helene
+4511,flood,2024-05-10,TX,Harris,48201,29.7604,-95.3698,major,TX-2024-Houston Flooding
+4480,wildfire,2024-06-15,CA,San Diego,06073,32.7157,-117.1611,moderate,CA-2024-San Diego Wildfire
+4430,hurricane,2023-08-30,LA,Orleans,22071,29.9511,-90.0715,major,LA-2023-Hurricane Idalia
