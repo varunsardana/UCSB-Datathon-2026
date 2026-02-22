@@ -56,3 +56,16 @@ disaster_x_baseline
 vuln_x_baseline
 duration_x_baseline
 prior_x_vulnerability
+
+# FEMA kept
+'disasterNumber',       # unique ID for the disaster
+'state',                # state abbreviation (CA, FL, TX...)
+'declarationType',      # DR=major disaster, EM=emergency, FM=fire mgmt
+'incidentType',         # Fire, Hurricane, Flood, Severe Storm, etc.
+'declarationTitle',     # human readable name ("WOOLSEY FIRE")
+'incidentBeginDate',    # when the disaster actually started
+'incidentEndDate',      # when it ended
+'fipsStateCode',        # first part of FIPS 
+'fipsCountyCode',       # second part of FIPS
+'designatedArea',       # human readable county name
+
