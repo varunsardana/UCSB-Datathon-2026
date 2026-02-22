@@ -1,0 +1,46 @@
+[
+  {
+    "id": "wildfire_06037",
+    "disaster_type": "wildfire",
+    "fips_code": "06037",
+    "region": "Los Angeles County, CA",
+    "text": "Following a major wildfire event in Los Angeles County (FIPS 06037), our model predicts significant workforce disruption across multiple sectors. Entertainment and media are expected to see a 12% employment decline peaking around month 2, with recovery taking approximately 7 months. Hospitality and restaurants face a 25% employment drop, recovering in 9 months. Retail is projected to lose 18% of jobs with a 6-month recovery. Meanwhile, demand sectors surge: Construction rises 180% above baseline peaking at month 4 as rebuilding begins. Healthcare demand increases 15% in the first 2 months due to emergency services needs. Insurance and financial services see a 45% demand surge, peaking around months 2-4 as claims processing accelerates.",
+    "predictions": {
+      "Entertainment": {"job_loss_pct": 12, "recovery_months": 7},
+      "Hospitality": {"job_loss_pct": 25, "recovery_months": 9},
+      "Retail": {"job_loss_pct": 18, "recovery_months": 6},
+      "Construction": {"job_change_pct": 180, "peak_month": 4},
+      "Healthcare": {"job_change_pct": 15, "peak_month": 2},
+      "Insurance": {"job_change_pct": 45, "peak_month": 3}
+    }
+  },
+  {
+    "id": "hurricane_12086",
+    "disaster_type": "hurricane",
+    "fips_code": "12086",
+    "region": "Miami-Dade County, FL",
+    "text": "After a major hurricane event in Miami-Dade County (FIPS 12086), workforce disruption follows a characteristic curve. Tourism and hospitality see the steepest drop at 40% employment loss, with a projected 12-month recovery given the region's economic dependence on visitors. Retail declines 22% before recovering in 7 months. Transportation and logistics see an initial 15% decline from evacuation, followed by a 200% surge as supply chain restoration begins. Construction demand surges 320% over baseline, peaking at month 5 and remaining elevated for 18-24 months. Insurance adjusters are in extremely high demand, with a 90% increase in job openings persisting for 12+ months. Emergency healthcare surges 30% immediately before normalizing at month 3.",
+    "predictions": {
+      "Tourism/Hospitality": {"job_loss_pct": 40, "recovery_months": 12},
+      "Retail": {"job_loss_pct": 22, "recovery_months": 7},
+      "Transportation/Logistics": {"job_change_pct": 200, "peak_month": 3},
+      "Construction": {"job_change_pct": 320, "peak_month": 5},
+      "Insurance": {"job_change_pct": 90, "peak_month": 4},
+      "Healthcare": {"job_change_pct": 30, "peak_month": 1}
+    }
+  },
+  {
+    "id": "wildfire_06073",
+    "disaster_type": "wildfire",
+    "fips_code": "06073",
+    "region": "San Diego County, CA",
+    "text": "For a major wildfire in San Diego County (FIPS 06073), our model anticipates moderate but widespread disruption. The tourism-dependent coastal economy means hospitality losses of 20% extending over 8 months. Military contractor and defense industries show resilience with less than 5% disruption. Retail declines 15% and recovers in 5 months. Construction demand surges 140% above baseline peaking at month 3. Environmental remediation (fire-specific) creates significant demand for months 3-12 as watershed and erosion management becomes critical in this region's unique geography.",
+    "predictions": {
+      "Hospitality/Tourism": {"job_loss_pct": 20, "recovery_months": 8},
+      "Retail": {"job_loss_pct": 15, "recovery_months": 5},
+      "Defense/Military Contracting": {"job_loss_pct": 3, "recovery_months": 2},
+      "Construction": {"job_change_pct": 140, "peak_month": 3},
+      "Environmental Remediation": {"job_change_pct": 85, "peak_month": 6}
+    }
+  }
+]

@@ -1,0 +1,36 @@
+# Env
+.env
+
+# ChromaDB
+chroma_db/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML models (large binaries — store separately)
+ml/models/*.pkl
+ml/models/*.joblib
+ml/models/*.h5
+ml/models/*.pt
+
+# Raw data (large files)
+data/raw/
+
+# OS
+.DS_Store
