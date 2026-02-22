@@ -1,0 +1,58 @@
+baseline_exits
+disaster_Biological
+disaster_Coastal Storm
+disaster_Earthquake
+disaster_Fire
+disaster_Flood
+disaster_Freezing
+disaster_Human Cause
+disaster_Hurricane
+disaster_Severe Ice Storm
+disaster_Severe Storm
+disaster_Snowstorm
+disaster_Tornado
+disaster_Tropical Storm
+disaster_Winter Storm
+disaster_month
+disaster_quarter
+disaster_year
+month_sin
+month_cos
+disaster_duration_days
+log_duration
+prior_disasters_2yr
+recently_hit
+sector_Construction & Real Estate
+sector_Consulting
+sector_Education
+sector_Energy
+sector_Finance
+sector_Government
+sector_Healthcare
+sector_Legal
+sector_Manufacturing
+sector_Marketing & Creative
+sector_Media & Entertainment
+sector_Nonprofit
+sector_Other
+sector_Research
+sector_Retail & Hospitality
+sector_Tech
+sector_Transportation
+sector_code
+peak_exit_month
+peak_exits
+immediate_impact
+exit_ratio
+log_baseline
+high_turnover
+industry_code
+industry_vulnerability
+sector_vulnerability
+industry_frequency
+state_code
+state_disaster_frequency
+disaster_x_baseline
+vuln_x_baseline
+duration_x_baseline
+prior_x_vulnerability

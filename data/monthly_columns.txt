@@ -1,0 +1,6 @@
+exits_month_1
+exits_month_2
+exits_month_3
+exits_month_4
+exits_month_5
+exits_month_6
