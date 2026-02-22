@@ -1,7 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from services.model_service import format_prediction_context, get_prediction
+from services.model_service import (
+    format_prediction_context,
+    get_prediction,
+    get_prediction_by_state,
+)
 
 router = APIRouter()
 
@@ -9,6 +13,12 @@ router = APIRouter()
 class PredictRequest(BaseModel):
     disaster_type: str
     fips_code: str
+    severity: str = "major"
+
+
+class PredictByStateRequest(BaseModel):
+    disaster_type: str
+    state: str          # 2-letter abbreviation, e.g. "FL"
     severity: str = "major"
 
 
@@ -44,6 +54,41 @@ def predict(req: PredictRequest):
             "error": "No prediction available for this scenario",
             "disaster_type": req.disaster_type,
             "fips_code": req.fips_code,
+        }
+
+    return result
+
+
+@router.post("/predict/by-state")
+def predict_by_state(req: PredictByStateRequest):
+    """
+    Return the most representative workforce disruption prediction for a
+    given (state, disaster_type) combo — useful when the user hasn't
+    specified a county-level FIPS code.
+
+    Internally calls get_prediction_by_state(), which picks the pre-computed
+    entry with the most sectors covered (most informative for the LLM and charts).
+
+    Response shape is identical to POST /predict.
+    """
+    state = req.state.upper().strip()
+
+    if len(state) != 2:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid state abbreviation '{req.state}'. Expected a 2-letter code, e.g. 'FL'.",
+        )
+
+    result = get_prediction_by_state(
+        disaster_type=req.disaster_type,
+        state=state,
+    )
+
+    if result is None:
+        return {
+            "error": "No prediction available for this state/disaster combination",
+            "disaster_type": req.disaster_type,
+            "state": state,
         }
 
     return result
