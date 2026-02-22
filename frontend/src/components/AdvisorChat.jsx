@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Sparkles, ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
+import { Send, Sparkles, ChevronDown, ChevronUp, Loader2, Zap } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,7 +8,6 @@ const cn = (...inputs) => twMerge(clsx(inputs));
 // Use relative URL — Vite proxies /api/* to http://localhost:8000 (see vite.config.ts)
 const API_BASE = '';
 
-// All 50 states + DC for the context selector
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID',
   'IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO',
@@ -16,19 +15,18 @@ const US_STATES = [
   'RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY',
 ];
 
-// Disaster types the model supports (matches backend model_predictions keys)
 const DISASTER_TYPES = [
-  { value: 'hurricane',     label: 'Hurricane' },
-  { value: 'flood',         label: 'Flood' },
-  { value: 'fire',          label: 'Wildfire / Fire' },
-  { value: 'severe_storm',  label: 'Severe Storm' },
-  { value: 'tornado',       label: 'Tornado' },
-  { value: 'earthquake',    label: 'Earthquake' },
-  { value: 'biological',    label: 'Biological' },
+  { value: 'hurricane',    label: 'Hurricane' },
+  { value: 'flood',        label: 'Flood' },
+  { value: 'fire',         label: 'Wildfire / Fire' },
+  { value: 'severe_storm', label: 'Severe Storm' },
+  { value: 'tornado',      label: 'Tornado' },
+  { value: 'earthquake',   label: 'Earthquake' },
+  { value: 'biological',   label: 'Biological' },
 ];
 
 const SUGGESTION_CHIPS = [
-  'What happens to my job?',
+  'Will I lose my job?',
   'Which sectors are hiring now?',
   'What aid programs can help me?',
   'How long until the job market recovers?',
@@ -49,24 +47,43 @@ const AdvisorChat = () => {
   const [selectedState, setSelectedState] = useState('');
   const [selectedDisasterType, setSelectedDisasterType] = useState('');
   const [showContext, setShowContext] = useState(true);
+
+  // Pipeline progress state
+  const [statusSteps, setStatusSteps] = useState([]);
+  const [liveSeconds, setLiveSeconds] = useState(0);
+  const startTimeRef = useRef(null);
   const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, statusSteps]);
+
+  // Live elapsed timer while loading
+  useEffect(() => {
+    if (!isLoading) {
+      setLiveSeconds(0);
+      return;
+    }
+    const iv = setInterval(() => {
+      if (startTimeRef.current) {
+        setLiveSeconds(((Date.now() - startTimeRef.current) / 1000).toFixed(1));
+      }
+    }, 100);
+    return () => clearInterval(iv);
+  }, [isLoading]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-
-    // Append the user's message immediately
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setInput('');
     setIsLoading(true);
+    setStatusSteps([]);
+    startTimeRef.current = Date.now();
 
-    // Append an empty assistant placeholder — we'll stream tokens into it
-    setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+    // Empty assistant placeholder — we'll stream into it
+    setMessages(prev => [...prev, { role: 'assistant', content: '', metadata: null }]);
 
     try {
       const response = await fetch(`${API_BASE}/api/chat`, {
@@ -78,6 +95,7 @@ const AdvisorChat = () => {
           disaster_type: selectedDisasterType || null,
           job_title: null,
           fips_code: null,
+          audience_type: null, // auto-detected by backend from job title + question
         }),
       });
 
@@ -85,31 +103,36 @@ const AdvisorChat = () => {
         throw new Error(`Server error: ${response.status} ${response.statusText}`);
       }
 
-      // Read the SSE stream chunk by chunk
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
+      let contentStarted = false;
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        // Accumulate decoded bytes; stream:true handles multi-byte chars at chunk boundaries
         buffer += decoder.decode(value, { stream: true });
-
-        // SSE events are delimited by double newlines
         const parts = buffer.split('\n\n');
-
-        // The last element may be an incomplete event — hold it for the next chunk
         buffer = parts.pop() ?? '';
 
         for (const part of parts) {
           const line = part.trim();
           if (!line.startsWith('data: ')) continue;
 
-          const data = line.slice(6); // strip the "data: " prefix
+          const data = line.slice(6);
 
           if (data === '[DONE]') {
+            const elapsed = ((Date.now() - startTimeRef.current) / 1000).toFixed(1);
+            setMessages(prev => {
+              const msgs = [...prev];
+              msgs[msgs.length - 1] = {
+                ...msgs[msgs.length - 1],
+                metadata: { timeSeconds: elapsed },
+              };
+              return msgs;
+            });
+            setStatusSteps([]);
             setIsLoading(false);
             return;
           }
@@ -120,23 +143,29 @@ const AdvisorChat = () => {
               const msgs = [...prev];
               msgs[msgs.length - 1] = {
                 role: 'assistant',
-                content: `⚠️ Advisor error: ${errText}`,
+                content: `⚠️ ${errText}`,
+                metadata: null,
               };
               return msgs;
             });
+            setStatusSteps([]);
             setIsLoading(false);
             return;
           }
 
-          // The backend escapes real newlines inside tokens as \\n
-          // so the SSE framing (which uses bare \n\n) doesn't break.
-          // We restore them here before displaying.
-          const token = data.replace(/\\n/g, '\n');
+          // Pipeline status events — shown as progress steps, not message content
+          if (data.startsWith('__status__')) {
+            setStatusSteps(prev => [...prev, data.slice(10)]);
+            continue;
+          }
 
+          // Real content token — start building the message
+          contentStarted = true;
+          const token = data.replace(/\\n/g, '\n');
           setMessages(prev => {
             const msgs = [...prev];
             msgs[msgs.length - 1] = {
-              role: 'assistant',
+              ...msgs[msgs.length - 1],
               content: msgs[msgs.length - 1].content + token,
             };
             return msgs;
@@ -144,22 +173,21 @@ const AdvisorChat = () => {
         }
       }
     } catch (err) {
-      // Replace the empty placeholder with a user-facing error message
       setMessages(prev => {
         const msgs = [...prev];
         msgs[msgs.length - 1] = {
           role: 'assistant',
-          content:
-            'Could not reach the advisor service. Make sure the backend is running on localhost:8000 and try again.',
+          content: 'Could not reach the advisor service. Make sure the backend is running on localhost:8000 and try again.',
+          metadata: null,
         };
         return msgs;
       });
+      setStatusSteps([]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Build a short label for the header subtitle so the user sees active context at a glance
   const contextLabel =
     [selectedState, selectedDisasterType ? selectedDisasterType.replace('_', ' ') : '']
       .filter(Boolean)
@@ -178,7 +206,6 @@ const AdvisorChat = () => {
             <h3 className="font-bold text-slate-900 dark:text-white">Workforce Advisor</h3>
             <p className="text-[10px] text-slate-500 truncate">{contextLabel}</p>
           </div>
-          {/* Toggle context selectors open/closed */}
           <button
             onClick={() => setShowContext(v => !v)}
             className="text-slate-400 hover:text-slate-600 transition-colors"
@@ -188,10 +215,8 @@ const AdvisorChat = () => {
           </button>
         </div>
 
-        {/* ── Context selectors (collapsible) ── */}
         {showContext && (
           <div className="mt-3 grid grid-cols-2 gap-2">
-            {/* State picker */}
             <div>
               <label className="block text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                 State
@@ -207,8 +232,6 @@ const AdvisorChat = () => {
                 ))}
               </select>
             </div>
-
-            {/* Disaster type picker */}
             <div>
               <label className="block text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                 Disaster
@@ -243,16 +266,60 @@ const AdvisorChat = () => {
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none'
               )}
             >
-              {m.content || (
-                <span className="flex items-center gap-1.5 text-slate-400 italic">
-                  <Loader2 size={12} className="animate-spin" />
-                  Thinking…
+              {/* Loading state: show pipeline steps + live timer */}
+              {m.content === '' && isLoading && i === messages.length - 1 ? (
+                <div className="space-y-2 min-w-[180px]">
+                  {statusSteps.length > 0 ? (
+                    <div className="space-y-1.5">
+                      {statusSteps.map((step, si) => (
+                        <div
+                          key={si}
+                          className={cn(
+                            'flex items-center gap-1.5 text-[10px] transition-all',
+                            si < statusSteps.length - 1
+                              ? 'text-emerald-500 dark:text-emerald-400'
+                              : 'text-primary font-medium'
+                          )}
+                        >
+                          <span>{si < statusSteps.length - 1 ? '✓' : '→'}</span>
+                          <span>{step}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="flex items-center gap-1.5 text-slate-400 italic text-xs">
+                      <Loader2 size={12} className="animate-spin" />
+                      Starting…
+                    </span>
+                  )}
+                  {/* Live elapsed timer */}
+                  <div className="flex items-center gap-1 text-[9px] text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-700">
+                    <Loader2 size={9} className="animate-spin" />
+                    {liveSeconds}s elapsed
+                  </div>
+                </div>
+              ) : (
+                m.content || (
+                  <span className="flex items-center gap-1.5 text-slate-400 italic">
+                    <Loader2 size={12} className="animate-spin" />
+                    Thinking…
+                  </span>
+                )
+              )}
+            </div>
+
+            {/* Message footer: role label + generation time badge */}
+            <div className="flex items-center gap-2 px-2">
+              <span className="text-[9px] text-slate-400 font-medium">
+                {m.role === 'user' ? 'You' : 'Advisor'}
+              </span>
+              {m.metadata?.timeSeconds && (
+                <span className="flex items-center gap-0.5 text-[9px] text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded-full">
+                  <Zap size={8} className="text-amber-400" />
+                  {m.metadata.timeSeconds}s
                 </span>
               )}
             </div>
-            <span className="text-[9px] text-slate-400 font-medium px-2">
-              {m.role === 'user' ? 'You' : 'Advisor'}
-            </span>
           </div>
         ))}
         <div ref={chatEndRef} />
@@ -260,7 +327,6 @@ const AdvisorChat = () => {
 
       {/* ── Input area ── */}
       <div className="p-5 pt-0">
-        {/* Suggestion chips */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {SUGGESTION_CHIPS.map(chip => (
             <button
@@ -274,7 +340,6 @@ const AdvisorChat = () => {
           ))}
         </div>
 
-        {/* Text input + send button */}
         <div className="relative">
           <input
             type="text"
@@ -282,7 +347,7 @@ const AdvisorChat = () => {
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
             disabled={isLoading}
-            placeholder={isLoading ? 'Advisor is responding…' : 'Ask about jobs, risk, or recovery…'}
+            placeholder={isLoading ? `Advisor is responding… ${liveSeconds}s` : 'Ask about jobs, risk, or recovery…'}
             className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-4 pr-12 text-sm focus:ring-1 focus:ring-primary focus:border-primary dark:text-white disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <button

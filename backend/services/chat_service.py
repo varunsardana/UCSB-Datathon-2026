@@ -30,6 +30,7 @@ async def chat_stream(
     disaster_type: str | None = None,
     job_title: str | None = None,
     fips_code: str | None = None,
+    audience_type: str | None = None,
 ) -> AsyncIterator[str]:
     """
     Full RAG pipeline as an async generator of text tokens.
@@ -39,15 +40,22 @@ async def chat_stream(
     similarity search. The retriever then adds matching KB chunks on top.
     """
 
-    # ── Step 1a: Prophet forecast context (Aliza's model) ────────────────────
-    # Reads prophet_state_forecasts.json directly for state + disaster_type.
-    # Does NOT need a fips_code. Returns "" if no forecast exists for this combo.
+    # ── Step 0: Detect audience upfront so we can show it in the status ─────
+    from rag.prompts import detect_audience, AUDIENCE_TYPES
+    resolved_audience = (
+        audience_type if audience_type in AUDIENCE_TYPES
+        else detect_audience(job_title, message)
+    )
+    audience_label = resolved_audience.replace("_", " ").title()
+    yield f"__status__Mode: {audience_label} guidance"
+
+    # ── Step 1a: Prophet forecast context ────────────────────────────────────
+    location_label = f"{state} {disaster_type}".strip() if (state or disaster_type) else "your area"
+    yield f"__status__Fetching disaster frequency forecast for {location_label}..."
     forecast_context = format_forecast_context(state, disaster_type)
 
-    # ── Step 1b: XGBoost prediction context (Nikita's model) ─────────────────
-    # Priority 1: exact fips_code match in model_predictions.json
-    # Priority 2: best state-level match (most sectors, same disaster type)
-    # Priority 3: None → prompt will show "No prediction available"
+    # ── Step 1b: XGBoost prediction context ──────────────────────────────────
+    yield "__status__Analyzing sector-level employment impact..."
     prediction = None
     if disaster_type:
         if fips_code:
@@ -56,10 +64,19 @@ async def chat_stream(
             prediction = get_prediction_by_state(disaster_type, state)
     prediction_context = format_prediction_context(prediction)
 
-    # ── Step 2: Retrieve KB chunks from ChromaDB ─────────────────────────────
-    # Returns top-k chunks from: knowledge docs (FEMA, unemployment, WARN Act,
-    # COBRA, retraining, recovery timelines, transferable skills) + forecast
-    # profiles + model output narratives — filtered by state/disaster metadata.
+    # ── Step 2: SQL structured query (rankings, comparisons, portfolio) ─────
+    sql_context = ""
+    try:
+        from rag.query_router import route_and_query
+        sql_result = route_and_query(message, state=state, disaster_type=disaster_type)
+        if sql_result:
+            yield "__status__Running structured data analysis..."
+            sql_context = sql_result
+    except Exception as e:
+        print(f"SQL routing skipped: {e}")
+
+    # ── Step 3: Retrieve KB chunks from ChromaDB ─────────────────────────────
+    yield "__status__Searching knowledge base for programs and resources..."
     chunks = retrieve(
         query=message,
         state=state,
@@ -67,7 +84,7 @@ async def chat_stream(
         top_k=settings.top_k,
     )
 
-    # ── Step 3: Build augmented system prompt ─────────────────────────────────
+    # ── Step 4: Build augmented system prompt ─────────────────────────────────
     system_prompt = build_system_prompt(
         forecast_context=forecast_context,
         prediction_context=prediction_context,
@@ -75,9 +92,13 @@ async def chat_stream(
         state=state,
         disaster_type=disaster_type,
         job_title=job_title,
+        question=message,
+        audience_type=resolved_audience,
+        sql_context=sql_context,
     )
 
-    # ── Step 4: Stream via chosen provider ────────────────────────────────────
+    # ── Step 5: Stream via chosen provider ────────────────────────────────────
+    yield "__status__Generating response..."
     provider = settings.llm_provider.lower()
 
     if provider == "local":
