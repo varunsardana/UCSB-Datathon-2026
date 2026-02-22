@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
-from routers import analytics, chat, disasters, predict
+from routers import analytics, chat, disasters, forecast, predict
 
 
 @asynccontextmanager
@@ -36,6 +36,7 @@ app.include_router(chat.router, prefix="/api")
 app.include_router(disasters.router, prefix="/api")
 app.include_router(analytics.router, prefix="/api")
 app.include_router(predict.router, prefix="/api")
+app.include_router(forecast.router, prefix="/api")
 
 
 @app.get("/api/health")
