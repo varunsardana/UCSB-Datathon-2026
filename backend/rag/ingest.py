@@ -51,13 +51,40 @@ DISASTER_MAP = {
     "tornado": "tornado",
 }
 
-# Maps filename keywords → state codes
+# Maps filename prefix → state code (all model-supported states + national fallback)
 STATE_MAP = {
+    # Original 5
     "ca_": "CA",
     "fl_": "FL",
     "tx_": "TX",
     "nc_": "NC",
     "la_": "LA",
+    # Batch 1 additions
+    "az_": "AZ",
+    "co_": "CO",
+    "ct_": "CT",
+    "dc_": "DC",
+    "ga_": "GA",
+    "il_": "IL",
+    "in_": "IN",
+    "ma_": "MA",
+    "md_": "MD",
+    "mi_": "MI",
+    # Batch 2 additions
+    "mn_": "MN",
+    "mo_": "MO",
+    "nv_": "NV",
+    "ny_": "NY",
+    "oh_": "OH",
+    "ok_": "OK",
+    "or_": "OR",
+    "pa_": "PA",
+    "ri_": "RI",
+    "tn_": "TN",
+    "ut_": "UT",
+    "va_": "VA",
+    "wa_": "WA",
+    "wi_": "WI",
 }
 
 

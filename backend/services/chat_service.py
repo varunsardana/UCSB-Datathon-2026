@@ -2,12 +2,13 @@
 Chat service — the core RAG orchestrator.
 
 Flow per request:
-  1. Get prediction context  (pre-computed JSON → live model fallback)
-  2. Retrieve relevant KB chunks from ChromaDB
-  3. Build the augmented system prompt
-  4. Stream response via the configured LLM provider:
-       LLM_PROVIDER=local  → Ollama (gemma3:1b or any local model)
-       LLM_PROVIDER=claude → Anthropic Claude API
+  1a. Prophet forecast context   — direct file lookup, guaranteed in prompt
+  1b. XGBoost prediction context — exact fips_code → state fallback → None
+  2.  Retrieve relevant KB chunks from ChromaDB (knowledge docs + model narratives)
+  3.  Build the augmented system prompt (two named model sections + KB)
+  4.  Stream response via the configured LLM provider:
+        LLM_PROVIDER=local  → Ollama (any local model)
+        LLM_PROVIDER=claude → Anthropic Claude API
 """
 
 from typing import AsyncIterator
@@ -15,7 +16,12 @@ from typing import AsyncIterator
 from config import settings
 from rag.prompts import build_system_prompt
 from rag.retriever import retrieve
-from services.model_service import format_prediction_context, get_prediction
+from services.model_service import (
+    format_forecast_context,
+    format_prediction_context,
+    get_prediction,
+    get_prediction_by_state,
+)
 
 
 async def chat_stream(
@@ -27,15 +33,33 @@ async def chat_stream(
 ) -> AsyncIterator[str]:
     """
     Full RAG pipeline as an async generator of text tokens.
-    Provider is selected via LLM_PROVIDER in .env (default: "local").
+
+    Both Aliza's Prophet forecast and Nikita's XGBoost prediction are injected
+    as guaranteed structured context blocks — not left to chance via ChromaDB
+    similarity search. The retriever then adds matching KB chunks on top.
     """
-    # ── Step 1: Prediction context ─────────────────────────────────────────
+
+    # ── Step 1a: Prophet forecast context (Aliza's model) ────────────────────
+    # Reads prophet_state_forecasts.json directly for state + disaster_type.
+    # Does NOT need a fips_code. Returns "" if no forecast exists for this combo.
+    forecast_context = format_forecast_context(state, disaster_type)
+
+    # ── Step 1b: XGBoost prediction context (Nikita's model) ─────────────────
+    # Priority 1: exact fips_code match in model_predictions.json
+    # Priority 2: best state-level match (most sectors, same disaster type)
+    # Priority 3: None → prompt will show "No prediction available"
     prediction = None
-    if disaster_type and fips_code:
-        prediction = get_prediction(disaster_type, fips_code)
+    if disaster_type:
+        if fips_code:
+            prediction = get_prediction(disaster_type, fips_code)
+        if prediction is None and state:
+            prediction = get_prediction_by_state(disaster_type, state)
     prediction_context = format_prediction_context(prediction)
 
-    # ── Step 2: Retrieve relevant KB chunks ────────────────────────────────
+    # ── Step 2: Retrieve KB chunks from ChromaDB ─────────────────────────────
+    # Returns top-k chunks from: knowledge docs (FEMA, unemployment, WARN Act,
+    # COBRA, retraining, recovery timelines, transferable skills) + forecast
+    # profiles + model output narratives — filtered by state/disaster metadata.
     chunks = retrieve(
         query=message,
         state=state,
@@ -43,8 +67,9 @@ async def chat_stream(
         top_k=settings.top_k,
     )
 
-    # ── Step 3: Build system prompt ────────────────────────────────────────
+    # ── Step 3: Build augmented system prompt ─────────────────────────────────
     system_prompt = build_system_prompt(
+        forecast_context=forecast_context,
         prediction_context=prediction_context,
         retrieved_docs=chunks,
         state=state,
@@ -52,7 +77,7 @@ async def chat_stream(
         job_title=job_title,
     )
 
-    # ── Step 4: Stream via chosen provider ─────────────────────────────────
+    # ── Step 4: Stream via chosen provider ────────────────────────────────────
     provider = settings.llm_provider.lower()
 
     if provider == "local":
