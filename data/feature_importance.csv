@@ -1,0 +1,66 @@
+feature,importance
+baseline_exits,0.11974756
+log_baseline,0.11172409
+exit_ratio,0.10922225
+disaster_code,0.10552397
+sector_growth_trend,0.07232248
+peak_exits,0.064483084
+log_sector_size,0.05408991
+disaster_Fire,0.049195938
+disaster_year,0.048329215
+sector_Media & Entertainment,0.041076798
+disaster_duration_days,0.029251723
+sector_size_in_county,0.019186629
+prior_x_vulnerability,0.016860569
+disaster_sector_avg_displacement,0.016179074
+window_num,0.014988561
+disaster_x_baseline,0.012834861
+disaster_Flood,0.010618954
+high_turnover,0.0100030275
+sector_concentration,0.009092863
+disaster_month,0.008923555
+sector_Other,0.008361862
+disaster_exposure_weighted,0.0077420147
+vuln_x_baseline,0.0055224095
+peak_exit_month,0.0054300283
+month_sin,0.004808715
+prior_disasters_2yr,0.0046457993
+duration_x_baseline,0.0043649026
+month_cos,0.0042506144
+sector_Legal,0.0039404165
+sector_Education,0.003618013
+herfindahl_index,0.0026142672
+sector_Tech,0.0024370549
+sector_vulnerability,0.0024006595
+disaster_Severe Storm,0.0021519149
+immediate_impact,0.0017069862
+sector_code,0.0015979953
+disaster_Biological,0.0014096561
+log_duration,0.0012829981
+disaster_quarter,0.001202772
+state_disaster_frequency,0.0010731629
+sector_Healthcare,0.0010467382
+sector_frequency,0.0009613394
+sector_Finance,0.0009533878
+sector_Retail & Hospitality,0.0008814362
+sector_Nonprofit,0.0007196321
+state_code,0.00026063662
+sector_Research,0.00023014785
+sector_Marketing & Creative,0.00018147791
+disaster_Hurricane,0.00018049944
+sector_Manufacturing,0.00014147618
+sector_Government,0.00013864138
+recently_hit,8.721658e-05
+disaster_Coastal Storm,0.0
+disaster_Tornado,0.0
+disaster_Earthquake,0.0
+sector_Transportation,0.0
+disaster_Freezing,0.0
+disaster_Tropical Storm,0.0
+sector_Energy,0.0
+sector_Construction & Real Estate,0.0
+disaster_Human Cause,0.0
+disaster_Severe Ice Storm,0.0
+disaster_Snowstorm,0.0
+disaster_Winter Storm,0.0
+sector_Consulting,0.0

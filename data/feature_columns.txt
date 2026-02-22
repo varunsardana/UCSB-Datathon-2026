@@ -1,4 +1,5 @@
 baseline_exits
+window_num
 disaster_Biological
 disaster_Coastal Storm
 disaster_Earthquake
@@ -21,7 +22,13 @@ month_cos
 disaster_duration_days
 log_duration
 prior_disasters_2yr
+disaster_exposure_weighted
 recently_hit
+sector_concentration
+sector_size_in_county
+log_sector_size
+sector_growth_trend
+herfindahl_index
 sector_Construction & Real Estate
 sector_Consulting
 sector_Education
@@ -40,16 +47,16 @@ sector_Retail & Hospitality
 sector_Tech
 sector_Transportation
 sector_code
+disaster_code
 peak_exit_month
 peak_exits
 immediate_impact
 exit_ratio
 log_baseline
 high_turnover
-industry_code
-industry_vulnerability
+disaster_sector_avg_displacement
 sector_vulnerability
-industry_frequency
+sector_frequency
 state_code
 state_disaster_frequency
 disaster_x_baseline

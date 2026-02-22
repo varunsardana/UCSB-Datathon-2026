@@ -1,16 +1,18 @@
 """
-STEP 3: Merge FEMA disasters with job endings
+STEP 3: Merge FEMA disasters with job endings (3-window structure)
 
 What this does:
 - Loads both clean datasets (fema_clean.csv + jobs_clean.csv)
-- For each disaster: finds all job endings in the same FIPS code
-  in the 6 months AFTER the disaster started
-- Also counts job endings in the same period ONE YEAR PRIOR (baseline)
+- For each disaster: counts job endings in 3 post-disaster windows:
+    Window 1 (0-6 months):   Immediate shock
+    Window 2 (6-12 months):  Recovery phase
+    Window 3 (12-18 months): Normalization
+- Baseline = average of same period 2 years ago and 3 years ago
+  (avoids overlap with post-disaster windows)
 - Groups by industry so we get per-industry displacement numbers
-- The difference between post-disaster and baseline = disaster-driven job loss
+- excess_exits = post_disaster_exits - avg_baseline_exits
 
-Output: one row per disaster per industry with monthly job ending counts
-This is the training data for the ML model.
+Output: one row per disaster × industry × window
 """
 
 import pandas as pd
@@ -36,12 +38,16 @@ fema = fema[fema['fips_code'].isin(overlap)]
 print(f"FEMA rows after filtering to overlap: {len(fema)}")
 print(f"Unique disasters with job data: {fema['disasterNumber'].nunique()}")
 
-# For every disaster:
-#   - Look at the 6 months AFTER the disaster started (post-disaster window)
-#   - Count how many jobs ended per industry per month in that FIPS code
-#   - Do the same for the SAME 6-month window ONE YEAR EARLIER (baseline)
-#   - Baseline tells us "normal" turnover so we can subtract it out
-print("\nProcessing disasters (this may take a minute)...")
+# 3-window structure with averaged baselines (2yr + 3yr ago)
+# Baseline uses 2 and 3 years prior to avoid overlap with post-disaster windows
+print("\nProcessing disasters (3 windows per disaster)...")
+
+# Define the 3 windows: (name, start_offset_months, end_offset_months)
+windows = [
+    ('window_1', 0, 6),     # 0-6 months: immediate shock
+    ('window_2', 6, 12),    # 6-12 months: recovery
+    ('window_3', 12, 18),   # 12-18 months: normalization
+]
 
 results = []
 
@@ -51,62 +57,77 @@ for idx, disaster in unique_disasters.iterrows():
     fips = disaster['fips_code']
     start = disaster['incidentBeginDate']
 
-    # Skip if start date is missing
     if pd.isna(start):
         continue
 
-    # Define time windows
-    post_start = start
-    post_end = start + pd.DateOffset(months=6)
-    baseline_start = start - pd.DateOffset(months=18)  # same period, one year earlier
-    baseline_end = start - pd.DateOffset(months=12)
-
-    # Get jobs in this FIPS code
     fips_jobs = jobs[jobs['fips_code'] == fips]
 
     if len(fips_jobs) == 0:
         continue
 
-    # Post-disaster job endings (6 months after disaster)
-    post_jobs = fips_jobs[
-        (fips_jobs['ended_at'] >= post_start) &
-        (fips_jobs['ended_at'] < post_end)
-    ]
+    for window_name, offset_start, offset_end in windows:
+        # Post-disaster window
+        post_start = start + pd.DateOffset(months=offset_start)
+        post_end = start + pd.DateOffset(months=offset_end)
 
-    # Baseline job endings (same 6-month window, one year earlier)
-    baseline_jobs = fips_jobs[
-        (fips_jobs['ended_at'] >= baseline_start) &
-        (fips_jobs['ended_at'] < baseline_end)
-    ]
+        # Baseline 1: same window, 2 years before disaster
+        b1_start = post_start - pd.DateOffset(years=2)
+        b1_end = post_end - pd.DateOffset(years=2)
 
-    # Count per industry
-    post_counts = post_jobs.groupby('industry').size().to_dict()
-    baseline_counts = baseline_jobs.groupby('industry').size().to_dict()
+        # Baseline 2: same window, 3 years before disaster
+        b2_start = post_start - pd.DateOffset(years=3)
+        b2_end = post_end - pd.DateOffset(years=3)
 
-    # Get all industries from both periods
-    all_industries = set(list(post_counts.keys()) + list(baseline_counts.keys()))
+        # Count post-disaster exits
+        post_jobs = fips_jobs[
+            (fips_jobs['ended_at'] >= post_start) &
+            (fips_jobs['ended_at'] < post_end)
+        ]
 
-    for industry in all_industries:
-        post_count = post_counts.get(industry, 0)
-        baseline_count = baseline_counts.get(industry, 0)
+        # Count baseline exits (2 years ago)
+        baseline1_jobs = fips_jobs[
+            (fips_jobs['ended_at'] >= b1_start) &
+            (fips_jobs['ended_at'] < b1_end)
+        ]
 
-        results.append({
-            'disasterNumber': disaster['disasterNumber'],
-            'incidentType': disaster['incidentType'],
-            'declarationTitle': disaster['declarationTitle'],
-            'fips_code': fips,
-            'state': disaster['state'],
-            'designatedArea': disaster['designatedArea'],
-            'incidentBeginDate': start,
-            'industry': industry,
-            'post_disaster_exits': post_count,
-            'baseline_exits': baseline_count,
-            'excess_exits': post_count - baseline_count,  # positive = more exits than normal
-        })
+        # Count baseline exits (3 years ago)
+        baseline2_jobs = fips_jobs[
+            (fips_jobs['ended_at'] >= b2_start) &
+            (fips_jobs['ended_at'] < b2_end)
+        ]
+
+        post_counts = post_jobs.groupby('industry').size().to_dict()
+        b1_counts = baseline1_jobs.groupby('industry').size().to_dict()
+        b2_counts = baseline2_jobs.groupby('industry').size().to_dict()
+
+        all_industries = set(list(post_counts.keys()) + list(b1_counts.keys()) + list(b2_counts.keys()))
+
+        for industry in all_industries:
+            post_count = post_counts.get(industry, 0)
+            b1_count = b1_counts.get(industry, 0)
+            b2_count = b2_counts.get(industry, 0)
+            avg_baseline = (b1_count + b2_count) / 2
+
+            results.append({
+                'disasterNumber': disaster['disasterNumber'],
+                'incidentType': disaster['incidentType'],
+                'declarationTitle': disaster['declarationTitle'],
+                'fips_code': fips,
+                'state': disaster['state'],
+                'designatedArea': disaster['designatedArea'],
+                'incidentBeginDate': start,
+                'window': window_name,
+                'industry': industry,
+                'post_disaster_exits': post_count,
+                'baseline_yr2_exits': b1_count,
+                'baseline_yr3_exits': b2_count,
+                'baseline_exits': avg_baseline,
+                'excess_exits': post_count - avg_baseline,
+            })
 
 
 df = pd.DataFrame(results)
-print(f"\nTotal rows (disaster × industry): {len(df)}")
+print(f"\nTotal rows (disaster × industry × window): {len(df)}")
 
 if len(df) > 0:
     print(f"\n{'='*50}")
@@ -115,16 +136,20 @@ if len(df) > 0:
     print(f"Unique disasters matched: {df['disasterNumber'].nunique()}")
     print(f"Unique industries: {df['industry'].nunique()}")
     print(f"Unique FIPS codes: {df['fips_code'].nunique()}")
+    print(f"Windows: {df['window'].unique().tolist()}")
+    print(f"Rows per window: {df['window'].value_counts().to_dict()}")
+
+    print(f"\nAverage excess exits by window:")
+    print(df.groupby('window')['excess_exits'].mean())
 
     print(f"\nAverage excess exits by disaster type:")
     print(df.groupby('incidentType')['excess_exits'].mean().sort_values(ascending=False).head(10))
 
-    print(f"\nTop 10 disaster-industry pairs by excess exits:")
-    top = df.nlargest(10, 'excess_exits')[['declarationTitle', 'industry', 'post_disaster_exits', 'baseline_exits', 'excess_exits']]
+    print(f"\nTop 10 disaster-industry-window combos by excess exits:")
+    top = df.nlargest(10, 'excess_exits')[['declarationTitle', 'industry', 'window', 'post_disaster_exits', 'baseline_exits', 'excess_exits']]
     print(top.to_string())
 
- 
     df.to_csv("merged_disaster_jobs.csv", index=False)
-    print(f"\nSaved to data/merged_disaster_jobs.csv ({len(df)} rows)")
+    print(f"\nSaved to merged_disaster_jobs.csv ({len(df)} rows)")
 else:
     print("WARNING: No matches found. Check that FIPS codes and dates overlap.")
