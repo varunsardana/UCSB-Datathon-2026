@@ -1,46 +1,4162 @@
 [
   {
-    "id": "wildfire_06037",
-    "disaster_type": "wildfire",
+    "id": "biological_04013",
+    "disaster_type": "biological",
+    "fips_code": "04013",
+    "region": "Gila Bend Indian Reservation, AZ",
+    "text": "Following a biological event in Gila Bend Indian Reservation, AZ (FIPS 04013), our model predicts the following workforce impacts. Education is projected to lose 58% of jobs, recovering in approximately 12 months. Energy sees a 36% demand increase, peaking around month 3. Healthcare is projected to lose 95% of jobs, recovering in approximately 12 months. Nonprofit sees a 39% demand increase, peaking around month 9. Other sees a 43% demand increase, peaking around month 15. Retail & Hospitality sees a 54% demand increase, peaking around month 9.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Education": {
+        "job_loss_pct": 58,
+        "recovery_months": 12
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 54,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 43,
+        "peak_month": 15
+      },
+      "Nonprofit": {
+        "job_change_pct": 39,
+        "peak_month": 9
+      },
+      "Tech": {
+        "job_loss_pct": 39,
+        "recovery_months": 18
+      },
+      "Transportation": {
+        "job_change_pct": 39,
+        "peak_month": 3
+      },
+      "Energy": {
+        "job_change_pct": 36,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_04019",
+    "disaster_type": "biological",
+    "fips_code": "04019",
+    "region": "Pima County, AZ",
+    "text": "Following a biological event in Pima County, AZ (FIPS 04019), our model predicts the following workforce impacts. Education sees a 69% demand increase, peaking around month 15. Healthcare sees a 38% demand increase, peaking around month 3. Other sees a 49% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 69,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 49,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_change_pct": 38,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_06001",
+    "disaster_type": "biological",
+    "fips_code": "06001",
+    "region": "Alameda County, CA",
+    "text": "Following a biological event in Alameda County, CA (FIPS 06001), our model predicts the following workforce impacts. Construction & Real Estate sees a 53% demand increase, peaking around month 9. Education sees a 45% demand increase, peaking around month 15. Finance sees a 44% demand increase, peaking around month 3. Government sees a 50% demand increase, peaking around month 9. Healthcare sees a 8% demand increase, peaking around month 15. Legal sees a 57% demand increase, peaking around month 9.",
+    "predictions": {
+      "Research": {
+        "job_change_pct": 73,
+        "peak_month": 9
+      },
+      "Legal": {
+        "job_change_pct": 57,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 57,
+        "peak_month": 9
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 53,
+        "peak_month": 9
+      },
+      "Government": {
+        "job_change_pct": 50,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 45,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 44,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 41,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_06037",
+    "disaster_type": "biological",
     "fips_code": "06037",
     "region": "Los Angeles County, CA",
-    "text": "Following a major wildfire event in Los Angeles County (FIPS 06037), our model predicts significant workforce disruption across multiple sectors. Entertainment and media are expected to see a 12% employment decline peaking around month 2, with recovery taking approximately 7 months. Hospitality and restaurants face a 25% employment drop, recovering in 9 months. Retail is projected to lose 18% of jobs with a 6-month recovery. Meanwhile, demand sectors surge: Construction rises 180% above baseline peaking at month 4 as rebuilding begins. Healthcare demand increases 15% in the first 2 months due to emergency services needs. Insurance and financial services see a 45% demand surge, peaking around months 2-4 as claims processing accelerates.",
+    "text": "Following a biological event in Los Angeles County, CA (FIPS 06037), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 41% of jobs, recovering in approximately 18 months. Consulting is projected to lose 78% of jobs, recovering in approximately 9 months. Education is projected to lose 11% of jobs, recovering in approximately 18 months. Energy is projected to lose 28% of jobs, recovering in approximately 18 months. Finance is projected to lose 44% of jobs, recovering in approximately 18 months. Government is projected to lose 79% of jobs, recovering in approximately 9 months.",
     "predictions": {
-      "Entertainment": {"job_loss_pct": 12, "recovery_months": 7},
-      "Hospitality": {"job_loss_pct": 25, "recovery_months": 9},
-      "Retail": {"job_loss_pct": 18, "recovery_months": 6},
-      "Construction": {"job_change_pct": 180, "peak_month": 4},
-      "Healthcare": {"job_change_pct": 15, "peak_month": 2},
-      "Insurance": {"job_change_pct": 45, "peak_month": 3}
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Transportation": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Government": {
+        "job_loss_pct": 79,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 78,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 71,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 57,
+        "recovery_months": 9
+      },
+      "Research": {
+        "job_loss_pct": 55,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_06059",
+    "disaster_type": "biological",
+    "fips_code": "06059",
+    "region": "Orange County, CA",
+    "text": "Following a biological event in Orange County, CA (FIPS 06059), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 38% of jobs, recovering in approximately 9 months. Consulting is projected to lose 53% of jobs, recovering in approximately 18 months. Education is projected to lose 48% of jobs, recovering in approximately 9 months. Finance is projected to lose 49% of jobs, recovering in approximately 9 months. Government is projected to lose 52% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 76% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 76,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_loss_pct": 55,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 53,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 52,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_loss_pct": 49,
+        "recovery_months": 9
+      },
+      "Education": {
+        "job_loss_pct": 48,
+        "recovery_months": 9
+      },
+      "Manufacturing": {
+        "job_loss_pct": 43,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_06067",
+    "disaster_type": "biological",
+    "fips_code": "06067",
+    "region": "Sacramento County, CA",
+    "text": "Following a biological event in Sacramento County, CA (FIPS 06067), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 38% of jobs, recovering in approximately 18 months. Consulting is projected to lose 22% of jobs, recovering in approximately 9 months. Education is projected to lose 21% of jobs, recovering in approximately 18 months. Energy is projected to lose 79% of jobs, recovering in approximately 12 months. Finance sees a 9% demand increase, peaking around month 3. Government is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 81,
+        "recovery_months": 12
+      },
+      "Energy": {
+        "job_loss_pct": 79,
+        "recovery_months": 12
+      },
+      "Legal": {
+        "job_loss_pct": 71,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 50,
+        "recovery_months": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 38,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 29,
+        "recovery_months": 12
+      },
+      "Other": {
+        "job_loss_pct": 29,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_06073",
+    "disaster_type": "biological",
+    "fips_code": "06073",
+    "region": "San Diego County, CA",
+    "text": "Following a biological event in San Diego County, CA (FIPS 06073), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 7% of jobs, recovering in approximately 18 months. Consulting is projected to lose 43% of jobs, recovering in approximately 12 months. Education is projected to lose 58% of jobs, recovering in approximately 9 months. Energy is projected to lose 20% of jobs, recovering in approximately 18 months. Finance is projected to lose 39% of jobs, recovering in approximately 9 months. Government is projected to lose 52% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 87,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 75,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 67,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 65,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 58,
+        "recovery_months": 9
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 56,
+        "recovery_months": 9
+      },
+      "Government": {
+        "job_loss_pct": 52,
+        "recovery_months": 18
+      },
+      "Transportation": {
+        "job_loss_pct": 52,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_06075",
+    "disaster_type": "biological",
+    "fips_code": "06075",
+    "region": "San Francisco County, CA",
+    "text": "Following a biological event in San Francisco County, CA (FIPS 06075), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 62% of jobs, recovering in approximately 18 months. Consulting is projected to lose 35% of jobs, recovering in approximately 9 months. Education is projected to lose 25% of jobs, recovering in approximately 9 months. Energy is projected to lose 17% of jobs, recovering in approximately 9 months. Finance is projected to lose 20% of jobs, recovering in approximately 18 months. Government sees a 7% demand increase, peaking around month 15.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 71,
+        "recovery_months": 9
+      },
+      "Research": {
+        "job_loss_pct": 64,
+        "recovery_months": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 62,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 48,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 35,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 33,
+        "recovery_months": 9
+      },
+      "Manufacturing": {
+        "job_loss_pct": 27,
+        "recovery_months": 12
+      },
+      "Education": {
+        "job_loss_pct": 25,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_06085",
+    "disaster_type": "biological",
+    "fips_code": "06085",
+    "region": "Santa Clara County, CA",
+    "text": "Following a biological event in Santa Clara County, CA (FIPS 06085), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 49% of jobs, recovering in approximately 9 months. Consulting is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 32% of jobs, recovering in approximately 12 months. Energy is projected to lose 60% of jobs, recovering in approximately 9 months. Finance is projected to lose 47% of jobs, recovering in approximately 9 months. Government is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Consulting": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Energy": {
+        "job_loss_pct": 60,
+        "recovery_months": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 49,
+        "recovery_months": 9
+      },
+      "Nonprofit": {
+        "job_loss_pct": 48,
+        "recovery_months": 12
+      },
+      "Finance": {
+        "job_loss_pct": 47,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_08013",
+    "disaster_type": "biological",
+    "fips_code": "08013",
+    "region": "Boulder County, CO",
+    "text": "Following a biological event in Boulder County, CO (FIPS 08013), our model predicts the following workforce impacts. Other sees a 68% demand increase, peaking around month 9.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 68,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_08031",
+    "disaster_type": "biological",
+    "fips_code": "08031",
+    "region": "Denver County, CO",
+    "text": "Following a biological event in Denver County, CO (FIPS 08031), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 45% of jobs, recovering in approximately 18 months. Education is projected to lose 35% of jobs, recovering in approximately 9 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 33% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 79% demand increase, peaking around month 9. Nonprofit is projected to lose 30% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 79,
+        "peak_month": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 45,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 43,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 35,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 33,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 30,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_loss_pct": 13,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_08041",
+    "disaster_type": "biological",
+    "fips_code": "08041",
+    "region": "El Paso County, CO",
+    "text": "Following a biological event in El Paso County, CO (FIPS 08041), our model predicts the following workforce impacts. Other sees a 94% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 94,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_09003",
+    "disaster_type": "biological",
+    "fips_code": "09003",
+    "region": "Hartford County(in PMSA 1170,3280,5440), CT",
+    "text": "Following a biological event in Hartford County(in PMSA 1170,3280,5440), CT (FIPS 09003), our model predicts the following workforce impacts. Finance sees a 29% demand increase, peaking around month 9.",
+    "predictions": {
+      "Finance": {
+        "job_change_pct": 29,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_11001",
+    "disaster_type": "biological",
+    "fips_code": "11001",
+    "region": "District of Columbia (County-equivalent), DC",
+    "text": "Following a biological event in District of Columbia (County-equivalent), DC (FIPS 11001), our model predicts the following workforce impacts. Construction & Real Estate sees a 33% demand increase, peaking around month 3. Consulting is projected to lose 44% of jobs, recovering in approximately 18 months. Education is projected to lose 36% of jobs, recovering in approximately 9 months. Energy sees a 31% demand increase, peaking around month 15. Finance is projected to lose 34% of jobs, recovering in approximately 18 months. Government is projected to lose 2% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 70,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 66,
+        "peak_month": 15
+      },
+      "Research": {
+        "job_loss_pct": 52,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 42,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 36,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_loss_pct": 34,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_12057",
+    "disaster_type": "biological",
+    "fips_code": "12057",
+    "region": "Hillsborough County, FL",
+    "text": "Following a biological event in Hillsborough County, FL (FIPS 12057), our model predicts the following workforce impacts. Tech is projected to lose 43% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Tech": {
+        "job_loss_pct": 43,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_12086",
+    "disaster_type": "biological",
+    "fips_code": "12086",
+    "region": "Dade County, FL",
+    "text": "Following a biological event in Dade County, FL (FIPS 12086), our model predicts the following workforce impacts. Education sees a 7% demand increase, peaking around month 15. Healthcare sees a 24% demand increase, peaking around month 9. Media & Entertainment sees a 38% demand increase, peaking around month 9. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Retail & Hospitality sees a 42% demand increase, peaking around month 3. Tech sees a 7% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 42,
+        "peak_month": 3
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 38,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 24,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 7,
+        "peak_month": 15
+      },
+      "Tech": {
+        "job_change_pct": 7,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_12095",
+    "disaster_type": "biological",
+    "fips_code": "12095",
+    "region": "Orange County, FL",
+    "text": "Following a biological event in Orange County, FL (FIPS 12095), our model predicts the following workforce impacts. Education is projected to lose 36% of jobs, recovering in approximately 9 months. Media & Entertainment sees a 68% demand increase, peaking around month 9.",
+    "predictions": {
+      "Media & Entertainment": {
+        "job_change_pct": 68,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 36,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_13121",
+    "disaster_type": "biological",
+    "fips_code": "13121",
+    "region": "Fulton County, GA",
+    "text": "Following a biological event in Fulton County, GA (FIPS 13121), our model predicts the following workforce impacts. Consulting is projected to lose 25% of jobs, recovering in approximately 18 months. Education is projected to lose 87% of jobs, recovering in approximately 9 months. Energy sees a 38% demand increase, peaking around month 15. Finance is projected to lose 12% of jobs, recovering in approximately 18 months. Government sees a 18% demand increase, peaking around month 15. Healthcare is projected to lose 27% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 87,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 85,
+        "recovery_months": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 65,
+        "peak_month": 3
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 45,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 41,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_change_pct": 38,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 27,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_17031",
+    "disaster_type": "biological",
+    "fips_code": "17031",
+    "region": "Cook County, IL",
+    "text": "Following a biological event in Cook County, IL (FIPS 17031), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 29% of jobs, recovering in approximately 18 months. Consulting is projected to lose 29% of jobs, recovering in approximately 12 months. Education is projected to lose 49% of jobs, recovering in approximately 18 months. Energy is projected to lose 36% of jobs, recovering in approximately 18 months. Finance is projected to lose 30% of jobs, recovering in approximately 12 months. Healthcare sees a 10% demand increase, peaking around month 9.",
+    "predictions": {
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Transportation": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 73,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 49,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 47,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 40,
+        "peak_month": 9
+      },
+      "Energy": {
+        "job_loss_pct": 36,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_change_pct": 32,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_18097",
+    "disaster_type": "biological",
+    "fips_code": "18097",
+    "region": "Marion County, IN",
+    "text": "Following a biological event in Marion County, IN (FIPS 18097), our model predicts the following workforce impacts. Education is projected to lose 78% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 11% of jobs, recovering in approximately 18 months. Manufacturing sees a 54% demand increase, peaking around month 15. Other sees a 29% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 78,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_change_pct": 54,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 29,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 11,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_22071",
+    "disaster_type": "biological",
+    "fips_code": "22071",
+    "region": "Orleans (Parish), LA",
+    "text": "Following a biological event in Orleans (Parish), LA (FIPS 22071), our model predicts the following workforce impacts. Education sees a 47% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 47,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_24510",
+    "disaster_type": "biological",
+    "fips_code": "24510",
+    "region": "Baltimore, MD",
+    "text": "Following a biological event in Baltimore, MD (FIPS 24510), our model predicts the following workforce impacts. Education is projected to lose 76% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 9 months. Other sees a 15% demand increase, peaking around month 9.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Education": {
+        "job_loss_pct": 76,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_change_pct": 15,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_25017",
+    "disaster_type": "biological",
+    "fips_code": "25017",
+    "region": "Middlesex County(in (P)MSA 1120,2600,4560), MA",
+    "text": "Following a biological event in Middlesex County(in (P)MSA 1120,2600,4560), MA (FIPS 25017), our model predicts the following workforce impacts. Education is projected to lose 69% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 53% of jobs, recovering in approximately 18 months. Research is projected to lose 95% of jobs, recovering in approximately 18 months. Tech sees a 11% demand increase, peaking around month 3.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 69,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 53,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_change_pct": 11,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_25025",
+    "disaster_type": "biological",
+    "fips_code": "25025",
+    "region": "Suffolk County, MA",
+    "text": "Following a biological event in Suffolk County, MA (FIPS 25025), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 11% of jobs, recovering in approximately 9 months. Consulting is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 49% of jobs, recovering in approximately 12 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 76% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 76% demand increase, peaking around month 15.",
+    "predictions": {
+      "Consulting": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 76,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 76,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_loss_pct": 49,
+        "recovery_months": 12
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 30,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_loss_pct": 29,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_26081",
+    "disaster_type": "biological",
+    "fips_code": "26081",
+    "region": "Kent County, MI",
+    "text": "Following a biological event in Kent County, MI (FIPS 26081), our model predicts the following workforce impacts. Education sees a 95% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 95,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_26161",
+    "disaster_type": "biological",
+    "fips_code": "26161",
+    "region": "Washtenaw County, MI",
+    "text": "Following a biological event in Washtenaw County, MI (FIPS 26161), our model predicts the following workforce impacts. Education sees a 42% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 42,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_26163",
+    "disaster_type": "biological",
+    "fips_code": "26163",
+    "region": "Wayne County, MI",
+    "text": "Following a biological event in Wayne County, MI (FIPS 26163), our model predicts the following workforce impacts. Education sees a 77% demand increase, peaking around month 9. Manufacturing is projected to lose 21% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 77,
+        "peak_month": 9
+      },
+      "Manufacturing": {
+        "job_loss_pct": 21,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_27053",
+    "disaster_type": "biological",
+    "fips_code": "27053",
+    "region": "Hennepin County, MN",
+    "text": "Following a biological event in Hennepin County, MN (FIPS 27053), our model predicts the following workforce impacts. Education sees a 26% demand increase, peaking around month 15. Finance is projected to lose 9% of jobs, recovering in approximately 18 months. Government sees a 74% demand increase, peaking around month 9. Healthcare is projected to lose 28% of jobs, recovering in approximately 18 months. Nonprofit is projected to lose 9% of jobs, recovering in approximately 18 months. Other sees a 54% demand increase, peaking around month 3.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_change_pct": 74,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 54,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 26,
+        "peak_month": 15
+      },
+      "Tech": {
+        "job_change_pct": 20,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_loss_pct": 9,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 9,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_29510",
+    "disaster_type": "biological",
+    "fips_code": "29510",
+    "region": "St. Louis, MO",
+    "text": "Following a biological event in St. Louis, MO (FIPS 29510), our model predicts the following workforce impacts. Education is projected to lose 43% of jobs, recovering in approximately 18 months. Other sees a 65% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 65,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_loss_pct": 43,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_32003",
+    "disaster_type": "biological",
+    "fips_code": "32003",
+    "region": "Clark County, NV",
+    "text": "Following a biological event in Clark County, NV (FIPS 32003), our model predicts the following workforce impacts. Education is projected to lose 54% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 71% of jobs, recovering in approximately 18 months. Manufacturing sees a 26% demand increase, peaking around month 15. Other sees a 31% demand increase, peaking around month 9. Tech is projected to lose 72% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Tech": {
+        "job_loss_pct": 72,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 71,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 54,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 31,
+        "peak_month": 9
+      },
+      "Manufacturing": {
+        "job_change_pct": 26,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_36047",
+    "disaster_type": "biological",
+    "fips_code": "36047",
+    "region": "Kings County, NY",
+    "text": "Following a biological event in Kings County, NY (FIPS 36047), our model predicts the following workforce impacts. Education is projected to lose 28% of jobs, recovering in approximately 9 months. Media & Entertainment is projected to lose 12% of jobs, recovering in approximately 18 months. Nonprofit sees a 68% demand increase, peaking around month 9. Other sees a 8% demand increase, peaking around month 15.",
+    "predictions": {
+      "Nonprofit": {
+        "job_change_pct": 68,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 28,
+        "recovery_months": 9
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 12,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 8,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_36055",
+    "disaster_type": "biological",
+    "fips_code": "36055",
+    "region": "Monroe County, NY",
+    "text": "Following a biological event in Monroe County, NY (FIPS 36055), our model predicts the following workforce impacts. Education sees a 12% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 12,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_36061",
+    "disaster_type": "biological",
+    "fips_code": "36061",
+    "region": "New York County, NY",
+    "text": "Following a biological event in New York County, NY (FIPS 36061), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 42% of jobs, recovering in approximately 12 months. Consulting is projected to lose 75% of jobs, recovering in approximately 9 months. Education is projected to lose 54% of jobs, recovering in approximately 9 months. Energy is projected to lose 79% of jobs, recovering in approximately 18 months. Finance is projected to lose 62% of jobs, recovering in approximately 18 months. Government is projected to lose 44% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Energy": {
+        "job_loss_pct": 79,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_loss_pct": 75,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 71,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 65,
+        "recovery_months": 12
+      },
+      "Finance": {
+        "job_loss_pct": 62,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 56,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_37119",
+    "disaster_type": "biological",
+    "fips_code": "37119",
+    "region": "Mecklenburg County, NC",
+    "text": "Following a biological event in Mecklenburg County, NC (FIPS 37119), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 9 months. Finance sees a 26% demand increase, peaking around month 15. Manufacturing sees a 95% demand increase, peaking around month 3. Other sees a 33% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Manufacturing": {
+        "job_change_pct": 95,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_change_pct": 33,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 26,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_37183",
+    "disaster_type": "biological",
+    "fips_code": "37183",
+    "region": "Wake County, NC",
+    "text": "Following a biological event in Wake County, NC (FIPS 37183), our model predicts the following workforce impacts. Education is projected to lose 25% of jobs, recovering in approximately 12 months. Healthcare sees a 39% demand increase, peaking around month 9. Other sees a 48% demand increase, peaking around month 9. Tech is projected to lose 44% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 48,
+        "peak_month": 9
+      },
+      "Tech": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_change_pct": 39,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 25,
+        "recovery_months": 12
+      }
+    }
+  },
+  {
+    "id": "biological_39035",
+    "disaster_type": "biological",
+    "fips_code": "39035",
+    "region": "Cuyahoga County, OH",
+    "text": "Following a biological event in Cuyahoga County, OH (FIPS 39035), our model predicts the following workforce impacts. Education is projected to lose 39% of jobs, recovering in approximately 9 months. Finance sees a 38% demand increase, peaking around month 9. Healthcare is projected to lose 71% of jobs, recovering in approximately 9 months. Other sees a 77% demand increase, peaking around month 3.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 77,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_loss_pct": 71,
+        "recovery_months": 9
+      },
+      "Education": {
+        "job_loss_pct": 39,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_change_pct": 38,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_39049",
+    "disaster_type": "biological",
+    "fips_code": "39049",
+    "region": "Franklin County, OH",
+    "text": "Following a biological event in Franklin County, OH (FIPS 39049), our model predicts the following workforce impacts. Education sees a 17% demand increase, peaking around month 15. Finance sees a 13% demand increase, peaking around month 9. Retail & Hospitality sees a 61% demand increase, peaking around month 15.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_change_pct": 61,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 17,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 13,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_39061",
+    "disaster_type": "biological",
+    "fips_code": "39061",
+    "region": "Hamilton County, OH",
+    "text": "Following a biological event in Hamilton County, OH (FIPS 39061), our model predicts the following workforce impacts. Healthcare is projected to lose 18% of jobs, recovering in approximately 18 months. Retail & Hospitality sees a 27% demand increase, peaking around month 15.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_change_pct": 27,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 18,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_40109",
+    "disaster_type": "biological",
+    "fips_code": "40109",
+    "region": "Oklahoma County, OK",
+    "text": "Following a biological event in Oklahoma County, OK (FIPS 40109), our model predicts the following workforce impacts. Education sees a 77% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 77,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_41051",
+    "disaster_type": "biological",
+    "fips_code": "41051",
+    "region": "Multnomah County, OR",
+    "text": "Following a biological event in Multnomah County, OR (FIPS 41051), our model predicts the following workforce impacts. Consulting sees a 77% demand increase, peaking around month 15. Education is projected to lose 34% of jobs, recovering in approximately 9 months. Finance is projected to lose 69% of jobs, recovering in approximately 9 months. Government sees a 3% demand increase, peaking around month 15. Healthcare is projected to lose 61% of jobs, recovering in approximately 9 months. Marketing & Creative sees a 27% demand increase, peaking around month 3.",
+    "predictions": {
+      "Consulting": {
+        "job_change_pct": 77,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_loss_pct": 69,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 61,
+        "recovery_months": 9
+      },
+      "Nonprofit": {
+        "job_loss_pct": 46,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 39,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_loss_pct": 34,
+        "recovery_months": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 27,
+        "peak_month": 3
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_42003",
+    "disaster_type": "biological",
+    "fips_code": "42003",
+    "region": "Allegheny County, PA",
+    "text": "Following a biological event in Allegheny County, PA (FIPS 42003), our model predicts the following workforce impacts. Education is projected to lose 38% of jobs, recovering in approximately 18 months. Tech sees a 62% demand increase, peaking around month 3.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 62,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_loss_pct": 38,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_42101",
+    "disaster_type": "biological",
+    "fips_code": "42101",
+    "region": "Philadelphia County, PA",
+    "text": "Following a biological event in Philadelphia County, PA (FIPS 42101), our model predicts the following workforce impacts. Education is projected to lose 15% of jobs, recovering in approximately 18 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 52% of jobs, recovering in approximately 12 months. Marketing & Creative is projected to lose 33% of jobs, recovering in approximately 18 months. Media & Entertainment sees a 53% demand increase, peaking around month 15. Nonprofit is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 53,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 52,
+        "recovery_months": 12
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 33,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 32,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 31,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_44007",
+    "disaster_type": "biological",
+    "fips_code": "44007",
+    "region": "Providence County(in PMSA 6060,6480), RI",
+    "text": "Following a biological event in Providence County(in PMSA 6060,6480), RI (FIPS 44007), our model predicts the following workforce impacts. Education sees a 27% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 27,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_47037",
+    "disaster_type": "biological",
+    "fips_code": "47037",
+    "region": "Davidson County, TN",
+    "text": "Following a biological event in Davidson County, TN (FIPS 47037), our model predicts the following workforce impacts. Education sees a 19% demand increase, peaking around month 15. Healthcare sees a 16% demand increase, peaking around month 9. Other sees a 6% demand increase, peaking around month 9. Tech sees a 61% demand increase, peaking around month 3.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 61,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 19,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 16,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 6,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_48029",
+    "disaster_type": "biological",
+    "fips_code": "48029",
+    "region": "Bexar County, TX",
+    "text": "Following a biological event in Bexar County, TX (FIPS 48029), our model predicts the following workforce impacts. Education sees a 25% demand increase, peaking around month 9. Finance sees a 36% demand increase, peaking around month 9. Other sees a 30% demand increase, peaking around month 15.",
+    "predictions": {
+      "Finance": {
+        "job_change_pct": 36,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 25,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_48113",
+    "disaster_type": "biological",
+    "fips_code": "48113",
+    "region": "Dallas County, TX",
+    "text": "Following a biological event in Dallas County, TX (FIPS 48113), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 18% of jobs, recovering in approximately 18 months. Education sees a 5% demand increase, peaking around month 3. Finance is projected to lose 95% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 71% of jobs, recovering in approximately 12 months. Marketing & Creative is projected to lose 32% of jobs, recovering in approximately 18 months. Nonprofit is projected to lose 10% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 71,
+        "recovery_months": 12
+      },
+      "Transportation": {
+        "job_change_pct": 70,
+        "peak_month": 9
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 32,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 25,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 18,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 17,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "biological_48201",
+    "disaster_type": "biological",
+    "fips_code": "48201",
+    "region": "Harris County, TX",
+    "text": "Following a biological event in Harris County, TX (FIPS 48201), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 28% of jobs, recovering in approximately 18 months. Consulting is projected to lose 13% of jobs, recovering in approximately 12 months. Education is projected to lose 79% of jobs, recovering in approximately 9 months. Energy is projected to lose 23% of jobs, recovering in approximately 9 months. Finance is projected to lose 19% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 79,
+        "recovery_months": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_loss_pct": 23,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_loss_pct": 19,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_change_pct": 14,
+        "peak_month": 15
+      },
+      "Consulting": {
+        "job_loss_pct": 13,
+        "recovery_months": 12
+      }
+    }
+  },
+  {
+    "id": "biological_48453",
+    "disaster_type": "biological",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a biological event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Construction & Real Estate sees a 42% demand increase, peaking around month 3. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 95% of jobs, recovering in approximately 9 months. Government is projected to lose 60% of jobs, recovering in approximately 12 months. Healthcare is projected to lose 61% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 16% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 80,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 61,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 60,
+        "recovery_months": 12
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 50,
+        "recovery_months": 9
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 42,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_49035",
+    "disaster_type": "biological",
+    "fips_code": "49035",
+    "region": "Salt Lake County, UT",
+    "text": "Following a biological event in Salt Lake County, UT (FIPS 49035), our model predicts the following workforce impacts. Education sees a 13% demand increase, peaking around month 15. Finance sees a 12% demand increase, peaking around month 9. Healthcare is projected to lose 34% of jobs, recovering in approximately 18 months. Other is projected to lose 92% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 92,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 34,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 13,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 12,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "biological_51013",
+    "disaster_type": "biological",
+    "fips_code": "51013",
+    "region": "Arlington County, VA",
+    "text": "Following a biological event in Arlington County, VA (FIPS 51013), our model predicts the following workforce impacts. Nonprofit sees a 26% demand increase, peaking around month 3.",
+    "predictions": {
+      "Nonprofit": {
+        "job_change_pct": 26,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "biological_51760",
+    "disaster_type": "biological",
+    "fips_code": "51760",
+    "region": "Richmond, VA",
+    "text": "Following a biological event in Richmond, VA (FIPS 51760), our model predicts the following workforce impacts. Education sees a 54% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 54,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_53033",
+    "disaster_type": "biological",
+    "fips_code": "53033",
+    "region": "King County, WA",
+    "text": "Following a biological event in King County, WA (FIPS 53033), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 95% of jobs, recovering in approximately 18 months. Consulting is projected to lose 35% of jobs, recovering in approximately 18 months. Education is projected to lose 85% of jobs, recovering in approximately 9 months. Finance is projected to lose 89% of jobs, recovering in approximately 18 months. Government sees a 21% demand increase, peaking around month 15. Healthcare is projected to lose 82% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Construction & Real Estate": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 89,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 85,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 82,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 70,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 63,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 58,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "biological_55025",
+    "disaster_type": "biological",
+    "fips_code": "55025",
+    "region": "Dane County, WI",
+    "text": "Following a biological event in Dane County, WI (FIPS 55025), our model predicts the following workforce impacts. Education is projected to lose 70% of jobs, recovering in approximately 9 months. Other sees a 34% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 70,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_change_pct": 34,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "biological_55079",
+    "disaster_type": "biological",
+    "fips_code": "55079",
+    "region": "Milwaukee County, WI",
+    "text": "Following a biological event in Milwaukee County, WI (FIPS 55079), our model predicts the following workforce impacts. Other is projected to lose 8% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 8,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "earthquake_11001",
+    "disaster_type": "earthquake",
+    "fips_code": "11001",
+    "region": "District of Columbia (County-equivalent), DC",
+    "text": "Following a earthquake event in District of Columbia (County-equivalent), DC (FIPS 11001), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Government is projected to lose 95% of jobs, recovering in approximately 12 months. Nonprofit is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Research is projected to lose 13% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 13,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "earthquake_49035",
+    "disaster_type": "earthquake",
+    "fips_code": "49035",
+    "region": "Salt Lake County, UT",
+    "text": "Following a earthquake event in Salt Lake County, UT (FIPS 49035), our model predicts the following workforce impacts. Education sees a 16% demand increase, peaking around month 15. Finance is projected to lose 28% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 10% of jobs, recovering in approximately 18 months. Other is projected to lose 67% of jobs, recovering in approximately 9 months. Retail & Hospitality sees a 31% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 67,
+        "recovery_months": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 31,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 16,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 10,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "earthquake_53033",
+    "disaster_type": "earthquake",
+    "fips_code": "53033",
+    "region": "King County, WA",
+    "text": "Following a earthquake event in King County, WA (FIPS 53033), our model predicts the following workforce impacts. Tech sees a 29% demand increase, peaking around month 9.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 29,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "fire_06037",
+    "disaster_type": "fire",
+    "fips_code": "06037",
+    "region": "Los Angeles County, CA",
+    "text": "Following a fire event in Los Angeles County, CA (FIPS 06037), our model predicts the following workforce impacts. Legal is projected to lose 8% of jobs, recovering in approximately 12 months. Other is projected to lose 15% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 7% of jobs, recovering in approximately 12 months. Consulting is projected to lose 16% of jobs, recovering in approximately 18 months. Education is projected to lose 9% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 28% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_loss_pct": 24,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 23,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 22,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 20,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_loss_pct": 16,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "fire_06059",
+    "disaster_type": "fire",
+    "fips_code": "06059",
+    "region": "Orange County, CA",
+    "text": "Following a fire event in Orange County, CA (FIPS 06059), our model predicts the following workforce impacts. Consulting is projected to lose 64% of jobs, recovering in approximately 12 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months. Manufacturing is projected to lose 95% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 45% of jobs, recovering in approximately 12 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "fire_06073",
+    "disaster_type": "fire",
+    "fips_code": "06073",
+    "region": "San Diego County, CA",
+    "text": "Following a fire event in San Diego County, CA (FIPS 06073), our model predicts the following workforce impacts. Government is projected to lose 43% of jobs, recovering in approximately 18 months. Education is projected to lose 68% of jobs, recovering in approximately 18 months. Marketing & Creative is projected to lose 42% of jobs, recovering in approximately 18 months. Other is projected to lose 35% of jobs, recovering in approximately 18 months. Tech is projected to lose 67% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 37% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 77,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 76,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 69,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 68,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 67,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 47,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 43,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "fire_06085",
+    "disaster_type": "fire",
+    "fips_code": "06085",
+    "region": "Santa Clara County, CA",
+    "text": "Following a fire event in Santa Clara County, CA (FIPS 06085), our model predicts the following workforce impacts. Education is projected to lose 57% of jobs, recovering in approximately 18 months. Other is projected to lose 17% of jobs, recovering in approximately 18 months. Construction & Real Estate sees a 9% demand increase, peaking around month 15. Consulting is projected to lose 44% of jobs, recovering in approximately 18 months. Energy is projected to lose 81% of jobs, recovering in approximately 18 months. Finance is projected to lose 86% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 88,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 86,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_loss_pct": 81,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 79,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 57,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 34,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "fire_08013",
+    "disaster_type": "fire",
+    "fips_code": "08013",
+    "region": "Boulder County, CO",
+    "text": "Following a fire event in Boulder County, CO (FIPS 08013), our model predicts the following workforce impacts. Education is projected to lose 6% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 6,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "fire_36061",
+    "disaster_type": "fire",
+    "fips_code": "36061",
+    "region": "New York County, NY",
+    "text": "Following a fire event in New York County, NY (FIPS 36061), our model predicts the following workforce impacts. Finance is projected to lose 14% of jobs, recovering in approximately 12 months. Media & Entertainment sees a 17% demand increase, peaking around month 9.",
+    "predictions": {
+      "Media & Entertainment": {
+        "job_change_pct": 17,
+        "peak_month": 9
+      },
+      "Finance": {
+        "job_loss_pct": 14,
+        "recovery_months": 12
+      }
+    }
+  },
+  {
+    "id": "fire_41051",
+    "disaster_type": "fire",
+    "fips_code": "41051",
+    "region": "Multnomah County, OR",
+    "text": "Following a fire event in Multnomah County, OR (FIPS 41051), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 13% of jobs, recovering in approximately 18 months. Consulting sees a 94% demand increase, peaking around month 9. Education is projected to lose 7% of jobs, recovering in approximately 18 months. Finance is projected to lose 74% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 13% of jobs, recovering in approximately 9 months. Marketing & Creative is projected to lose 17% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Consulting": {
+        "job_change_pct": 94,
+        "peak_month": 9
+      },
+      "Finance": {
+        "job_loss_pct": 74,
+        "recovery_months": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 23,
+        "peak_month": 9
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 17,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 17,
+        "peak_month": 15
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 13,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 13,
+        "recovery_months": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 13,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_04013",
+    "disaster_type": "flood",
+    "fips_code": "04013",
+    "region": "Gila Bend Indian Reservation, AZ",
+    "text": "Following a flood event in Gila Bend Indian Reservation, AZ (FIPS 04013), our model predicts the following workforce impacts. Education sees a 7% demand increase, peaking around month 15. Retail & Hospitality is projected to lose 55% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_loss_pct": 55,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 7,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_06001",
+    "disaster_type": "flood",
+    "fips_code": "06001",
+    "region": "Alameda County, CA",
+    "text": "Following a flood event in Alameda County, CA (FIPS 06001), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 83% of jobs, recovering in approximately 18 months. Education is projected to lose 34% of jobs, recovering in approximately 18 months. Energy sees a 60% demand increase, peaking around month 9. Government is projected to lose 26% of jobs, recovering in approximately 18 months. Healthcare sees a 18% demand increase, peaking around month 9. Legal is projected to lose 95% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 83,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_change_pct": 60,
+        "peak_month": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 40,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 34,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 26,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 24,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_change_pct": 18,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "flood_06037",
+    "disaster_type": "flood",
+    "fips_code": "06037",
+    "region": "Los Angeles County, CA",
+    "text": "Following a flood event in Los Angeles County, CA (FIPS 06037), our model predicts the following workforce impacts. Other is projected to lose 31% of jobs, recovering in approximately 18 months. Consulting is projected to lose 18% of jobs, recovering in approximately 12 months. Healthcare is projected to lose 11% of jobs, recovering in approximately 18 months. Retail & Hospitality is projected to lose 13% of jobs, recovering in approximately 18 months. Tech is projected to lose 8% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 41% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 69,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 41,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 31,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 30,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 28,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_loss_pct": 26,
+        "recovery_months": 12
+      },
+      "Consulting": {
+        "job_loss_pct": 18,
+        "recovery_months": 12
+      },
+      "Research": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_06059",
+    "disaster_type": "flood",
+    "fips_code": "06059",
+    "region": "Orange County, CA",
+    "text": "Following a flood event in Orange County, CA (FIPS 06059), our model predicts the following workforce impacts. Consulting is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 9 months. Manufacturing is projected to lose 95% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 86% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 61% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Consulting": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_06067",
+    "disaster_type": "flood",
+    "fips_code": "06067",
+    "region": "Sacramento County, CA",
+    "text": "Following a flood event in Sacramento County, CA (FIPS 06067), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 13% of jobs, recovering in approximately 18 months. Consulting is projected to lose 79% of jobs, recovering in approximately 12 months. Education is projected to lose 21% of jobs, recovering in approximately 9 months. Energy is projected to lose 9% of jobs, recovering in approximately 18 months. Finance is projected to lose 77% of jobs, recovering in approximately 12 months. Government is projected to lose 36% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Research": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 79,
+        "recovery_months": 12
+      },
+      "Finance": {
+        "job_loss_pct": 77,
+        "recovery_months": 12
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 66,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 65,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_loss_pct": 59,
+        "recovery_months": 18
+      },
+      "Legal": {
+        "job_loss_pct": 47,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_06073",
+    "disaster_type": "flood",
+    "fips_code": "06073",
+    "region": "San Diego County, CA",
+    "text": "Following a flood event in San Diego County, CA (FIPS 06073), our model predicts the following workforce impacts. Government sees a 13% demand increase, peaking around month 9. Finance sees a 6% demand increase, peaking around month 3. Marketing & Creative sees a 30% demand increase, peaking around month 3. Other sees a 22% demand increase, peaking around month 3. Retail & Hospitality sees a 33% demand increase, peaking around month 9. Education sees a 14% demand increase, peaking around month 15.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_change_pct": 33,
+        "peak_month": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 30,
+        "peak_month": 3
+      },
+      "Tech": {
+        "job_change_pct": 28,
+        "peak_month": 9
+      },
+      "Transportation": {
+        "job_change_pct": 25,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_change_pct": 24,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 22,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 19,
+        "peak_month": 9
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 16,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "flood_06075",
+    "disaster_type": "flood",
+    "fips_code": "06075",
+    "region": "San Francisco County, CA",
+    "text": "Following a flood event in San Francisco County, CA (FIPS 06075), our model predicts the following workforce impacts. Construction & Real Estate sees a 21% demand increase, peaking around month 15. Education sees a 47% demand increase, peaking around month 3. Energy sees a 18% demand increase, peaking around month 15. Finance is projected to lose 6% of jobs, recovering in approximately 18 months. Government is projected to lose 10% of jobs, recovering in approximately 9 months. Healthcare sees a 29% demand increase, peaking around month 3.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 59,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 47,
+        "peak_month": 3
+      },
+      "Transportation": {
+        "job_loss_pct": 40,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_change_pct": 38,
+        "peak_month": 9
+      },
+      "Research": {
+        "job_change_pct": 37,
+        "peak_month": 9
+      },
+      "Tech": {
+        "job_change_pct": 34,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 29,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "flood_06085",
+    "disaster_type": "flood",
+    "fips_code": "06085",
+    "region": "Santa Clara County, CA",
+    "text": "Following a flood event in Santa Clara County, CA (FIPS 06085), our model predicts the following workforce impacts. Other is projected to lose 16% of jobs, recovering in approximately 9 months. Education sees a 7% demand increase, peaking around month 9. Construction & Real Estate is projected to lose 11% of jobs, recovering in approximately 18 months. Consulting is projected to lose 26% of jobs, recovering in approximately 18 months. Energy is projected to lose 30% of jobs, recovering in approximately 12 months. Finance is projected to lose 67% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 67,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 32,
+        "peak_month": 3
+      },
+      "Energy": {
+        "job_loss_pct": 30,
+        "recovery_months": 12
+      },
+      "Research": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      },
+      "Consulting": {
+        "job_loss_pct": 26,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_change_pct": 23,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_loss_pct": 16,
+        "recovery_months": 9
+      },
+      "Manufacturing": {
+        "job_loss_pct": 16,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_08031",
+    "disaster_type": "flood",
+    "fips_code": "08031",
+    "region": "Denver County, CO",
+    "text": "Following a flood event in Denver County, CO (FIPS 08031), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 9 months. Other is projected to lose 95% of jobs, recovering in approximately 9 months. Retail & Hospitality is projected to lose 15% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 15,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_17031",
+    "disaster_type": "flood",
+    "fips_code": "17031",
+    "region": "Cook County, IL",
+    "text": "Following a flood event in Cook County, IL (FIPS 17031), our model predicts the following workforce impacts. Education sees a 49% demand increase, peaking around month 9. Legal sees a 36% demand increase, peaking around month 9. Construction & Real Estate sees a 20% demand increase, peaking around month 9. Consulting sees a 14% demand increase, peaking around month 9. Finance sees a 32% demand increase, peaking around month 15. Government sees a 82% demand increase, peaking around month 9.",
+    "predictions": {
+      "Government": {
+        "job_change_pct": 82,
+        "peak_month": 9
+      },
+      "Manufacturing": {
+        "job_change_pct": 62,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 49,
+        "peak_month": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 48,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 46,
+        "peak_month": 9
+      },
+      "Nonprofit": {
+        "job_change_pct": 40,
+        "peak_month": 9
+      },
+      "Legal": {
+        "job_change_pct": 36,
+        "peak_month": 9
+      },
+      "Research": {
+        "job_change_pct": 35,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "flood_27053",
+    "disaster_type": "flood",
+    "fips_code": "27053",
+    "region": "Hennepin County, MN",
+    "text": "Following a flood event in Hennepin County, MN (FIPS 27053), our model predicts the following workforce impacts. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 40% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 77% of jobs, recovering in approximately 18 months. Retail & Hospitality is projected to lose 61% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 77,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 61,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 40,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_29510",
+    "disaster_type": "flood",
+    "fips_code": "29510",
+    "region": "St. Louis, MO",
+    "text": "Following a flood event in St. Louis, MO (FIPS 29510), our model predicts the following workforce impacts. Education is projected to lose 16% of jobs, recovering in approximately 12 months. Finance is projected to lose 4% of jobs, recovering in approximately 18 months. Healthcare sees a 7% demand increase, peaking around month 3. Other sees a 43% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 43,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_loss_pct": 16,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_change_pct": 7,
+        "peak_month": 3
+      },
+      "Finance": {
+        "job_loss_pct": 4,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_36047",
+    "disaster_type": "flood",
+    "fips_code": "36047",
+    "region": "Kings County, NY",
+    "text": "Following a flood event in Kings County, NY (FIPS 36047), our model predicts the following workforce impacts. Education sees a 2% demand increase, peaking around month 9. Healthcare sees a 67% demand increase, peaking around month 9. Media & Entertainment sees a 26% demand increase, peaking around month 9. Nonprofit sees a 57% demand increase, peaking around month 9. Other is projected to lose 83% of jobs, recovering in approximately 12 months. Retail & Hospitality sees a 64% demand increase, peaking around month 3.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 83,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_change_pct": 67,
+        "peak_month": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 64,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 57,
+        "peak_month": 9
+      },
+      "Tech": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 26,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 2,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "flood_36055",
+    "disaster_type": "flood",
+    "fips_code": "36055",
+    "region": "Monroe County, NY",
+    "text": "Following a flood event in Monroe County, NY (FIPS 36055), our model predicts the following workforce impacts. Other sees a 77% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 77,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_36061",
+    "disaster_type": "flood",
+    "fips_code": "36061",
+    "region": "New York County, NY",
+    "text": "Following a flood event in New York County, NY (FIPS 36061), our model predicts the following workforce impacts. Other sees a 46% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 46,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_39061",
+    "disaster_type": "flood",
+    "fips_code": "39061",
+    "region": "Hamilton County, OH",
+    "text": "Following a flood event in Hamilton County, OH (FIPS 39061), our model predicts the following workforce impacts. Education sees a 73% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 73,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_48113",
+    "disaster_type": "flood",
+    "fips_code": "48113",
+    "region": "Dallas County, TX",
+    "text": "Following a flood event in Dallas County, TX (FIPS 48113), our model predicts the following workforce impacts. Education sees a 76% demand increase, peaking around month 15. Healthcare sees a 74% demand increase, peaking around month 15. Construction & Real Estate sees a 76% demand increase, peaking around month 3. Consulting sees a 47% demand increase, peaking around month 15. Finance sees a 59% demand increase, peaking around month 15. Legal is projected to lose 28% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Marketing & Creative": {
+        "job_change_pct": 95,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 76,
+        "peak_month": 15
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 76,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_change_pct": 74,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 59,
+        "peak_month": 15
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 53,
+        "peak_month": 3
+      },
+      "Transportation": {
+        "job_change_pct": 48,
+        "peak_month": 15
+      },
+      "Consulting": {
+        "job_change_pct": 47,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "flood_48201",
+    "disaster_type": "flood",
+    "fips_code": "48201",
+    "region": "Harris County, TX",
+    "text": "Following a flood event in Harris County, TX (FIPS 48201), our model predicts the following workforce impacts. Energy sees a 4% demand increase, peaking around month 3. Other sees a 9% demand increase, peaking around month 9. Education is projected to lose 61% of jobs, recovering in approximately 18 months. Finance sees a 35% demand increase, peaking around month 3. Healthcare is projected to lose 25% of jobs, recovering in approximately 18 months. Legal sees a 49% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 61,
+        "recovery_months": 18
+      },
+      "Legal": {
+        "job_change_pct": 49,
+        "peak_month": 3
+      },
+      "Finance": {
+        "job_change_pct": 35,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_loss_pct": 25,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_change_pct": 16,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 9,
+        "peak_month": 9
+      },
+      "Energy": {
+        "job_change_pct": 4,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "flood_48453",
+    "disaster_type": "flood",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a flood event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Consulting sees a 56% demand increase, peaking around month 3. Tech sees a 31% demand increase, peaking around month 15. Education sees a 29% demand increase, peaking around month 15. Healthcare sees a 30% demand increase, peaking around month 3. Manufacturing sees a 55% demand increase, peaking around month 15. Other sees a 1% demand increase, peaking around month 9.",
+    "predictions": {
+      "Consulting": {
+        "job_change_pct": 56,
+        "peak_month": 3
+      },
+      "Manufacturing": {
+        "job_change_pct": 55,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 50,
+        "peak_month": 15
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 33,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_change_pct": 31,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 30,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 29,
+        "peak_month": 15
+      },
+      "Government": {
+        "job_change_pct": 29,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "flood_53033",
+    "disaster_type": "flood",
+    "fips_code": "53033",
+    "region": "King County, WA",
+    "text": "Following a flood event in King County, WA (FIPS 53033), our model predicts the following workforce impacts. Healthcare is projected to lose 49% of jobs, recovering in approximately 18 months. Other is projected to lose 39% of jobs, recovering in approximately 18 months. Tech is projected to lose 67% of jobs, recovering in approximately 18 months. Manufacturing is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 62% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 83,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 67,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 62,
+        "recovery_months": 12
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 55,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 49,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 39,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "flood_55025",
+    "disaster_type": "flood",
+    "fips_code": "55025",
+    "region": "Dane County, WI",
+    "text": "Following a flood event in Dane County, WI (FIPS 55025), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 12 months. Healthcare sees a 65% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_change_pct": 65,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "flood_55079",
+    "disaster_type": "flood",
+    "fips_code": "55079",
+    "region": "Milwaukee County, WI",
+    "text": "Following a flood event in Milwaukee County, WI (FIPS 55079), our model predicts the following workforce impacts. Other sees a 16% demand increase, peaking around month 15. Retail & Hospitality sees a 52% demand increase, peaking around month 9.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_change_pct": 52,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 16,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "freezing_06037",
+    "disaster_type": "freezing",
+    "fips_code": "06037",
+    "region": "Los Angeles County, CA",
+    "text": "Following a freezing event in Los Angeles County, CA (FIPS 06037), our model predicts the following workforce impacts. Finance is projected to lose 91% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 56% of jobs, recovering in approximately 18 months. Legal is projected to lose 13% of jobs, recovering in approximately 18 months. Marketing & Creative is projected to lose 3% of jobs, recovering in approximately 9 months. Media & Entertainment is projected to lose 95% of jobs, recovering in approximately 9 months. Other is projected to lose 22% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Media & Entertainment": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 91,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 56,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 45,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 22,
+        "recovery_months": 12
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 20,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "freezing_06073",
+    "disaster_type": "freezing",
+    "fips_code": "06073",
+    "region": "San Diego County, CA",
+    "text": "Following a freezing event in San Diego County, CA (FIPS 06073), our model predicts the following workforce impacts. Education is projected to lose 8% of jobs, recovering in approximately 18 months. Other is projected to lose 65% of jobs, recovering in approximately 9 months. Tech is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 65,
+        "recovery_months": 9
+      },
+      "Education": {
+        "job_loss_pct": 8,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_11001",
+    "disaster_type": "hurricane",
+    "fips_code": "11001",
+    "region": "District of Columbia (County-equivalent), DC",
+    "text": "Following a hurricane event in District of Columbia (County-equivalent), DC (FIPS 11001), our model predicts the following workforce impacts. Education is projected to lose 79% of jobs, recovering in approximately 18 months. Government is projected to lose 91% of jobs, recovering in approximately 12 months. Nonprofit is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Marketing & Creative is projected to lose 68% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 91,
+        "recovery_months": 12
+      },
+      "Education": {
+        "job_loss_pct": 79,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 68,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_12057",
+    "disaster_type": "hurricane",
+    "fips_code": "12057",
+    "region": "Hillsborough County, FL",
+    "text": "Following a hurricane event in Hillsborough County, FL (FIPS 12057), our model predicts the following workforce impacts. Other sees a 35% demand increase, peaking around month 9. Education sees a 66% demand increase, peaking around month 9. Healthcare sees a 85% demand increase, peaking around month 15. Tech sees a 44% demand increase, peaking around month 15.",
+    "predictions": {
+      "Healthcare": {
+        "job_change_pct": 85,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 66,
+        "peak_month": 9
+      },
+      "Tech": {
+        "job_change_pct": 44,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 35,
+        "peak_month": 9
+      }
     }
   },
   {
     "id": "hurricane_12086",
     "disaster_type": "hurricane",
     "fips_code": "12086",
-    "region": "Miami-Dade County, FL",
-    "text": "After a major hurricane event in Miami-Dade County (FIPS 12086), workforce disruption follows a characteristic curve. Tourism and hospitality see the steepest drop at 40% employment loss, with a projected 12-month recovery given the region's economic dependence on visitors. Retail declines 22% before recovering in 7 months. Transportation and logistics see an initial 15% decline from evacuation, followed by a 200% surge as supply chain restoration begins. Construction demand surges 320% over baseline, peaking at month 5 and remaining elevated for 18-24 months. Insurance adjusters are in extremely high demand, with a 90% increase in job openings persisting for 12+ months. Emergency healthcare surges 30% immediately before normalizing at month 3.",
+    "region": "Dade County, FL",
+    "text": "Following a hurricane event in Dade County, FL (FIPS 12086), our model predicts the following workforce impacts. Education sees a 24% demand increase, peaking around month 9. Healthcare is projected to lose 14% of jobs, recovering in approximately 18 months. Other sees a 4% demand increase, peaking around month 15. Retail & Hospitality sees a 23% demand increase, peaking around month 3. Finance sees a 21% demand increase, peaking around month 15. Legal is projected to lose 44% of jobs, recovering in approximately 18 months.",
     "predictions": {
-      "Tourism/Hospitality": {"job_loss_pct": 40, "recovery_months": 12},
-      "Retail": {"job_loss_pct": 22, "recovery_months": 7},
-      "Transportation/Logistics": {"job_change_pct": 200, "peak_month": 3},
-      "Construction": {"job_change_pct": 320, "peak_month": 5},
-      "Insurance": {"job_change_pct": 90, "peak_month": 4},
-      "Healthcare": {"job_change_pct": 30, "peak_month": 1}
+      "Legal": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 24,
+        "peak_month": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 23,
+        "peak_month": 3
+      },
+      "Finance": {
+        "job_change_pct": 21,
+        "peak_month": 15
+      },
+      "Tech": {
+        "job_loss_pct": 20,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 14,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 4,
+        "peak_month": 15
+      }
     }
   },
   {
-    "id": "wildfire_06073",
-    "disaster_type": "wildfire",
+    "id": "hurricane_12095",
+    "disaster_type": "hurricane",
+    "fips_code": "12095",
+    "region": "Orange County, FL",
+    "text": "Following a hurricane event in Orange County, FL (FIPS 12095), our model predicts the following workforce impacts. Healthcare sees a 76% demand increase, peaking around month 3. Media & Entertainment is projected to lose 44% of jobs, recovering in approximately 18 months. Other sees a 27% demand increase, peaking around month 9.",
+    "predictions": {
+      "Healthcare": {
+        "job_change_pct": 76,
+        "peak_month": 3
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 44,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 27,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "hurricane_13121",
+    "disaster_type": "hurricane",
+    "fips_code": "13121",
+    "region": "Fulton County, GA",
+    "text": "Following a hurricane event in Fulton County, GA (FIPS 13121), our model predicts the following workforce impacts. Finance is projected to lose 41% of jobs, recovering in approximately 9 months. Construction & Real Estate sees a 86% demand increase, peaking around month 3. Government is projected to lose 14% of jobs, recovering in approximately 18 months. Marketing & Creative is projected to lose 18% of jobs, recovering in approximately 12 months. Media & Entertainment sees a 46% demand increase, peaking around month 15. Retail & Hospitality sees a 35% demand increase, peaking around month 3.",
+    "predictions": {
+      "Construction & Real Estate": {
+        "job_change_pct": 86,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_loss_pct": 86,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_change_pct": 75,
+        "peak_month": 9
+      },
+      "Transportation": {
+        "job_change_pct": 75,
+        "peak_month": 9
+      },
+      "Legal": {
+        "job_change_pct": 61,
+        "peak_month": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 46,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 42,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 41,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "hurricane_22071",
+    "disaster_type": "hurricane",
+    "fips_code": "22071",
+    "region": "Orleans (Parish), LA",
+    "text": "Following a hurricane event in Orleans (Parish), LA (FIPS 22071), our model predicts the following workforce impacts. Other sees a 61% demand increase, peaking around month 15. Education sees a 56% demand increase, peaking around month 3.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 61,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 56,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "hurricane_25025",
+    "disaster_type": "hurricane",
+    "fips_code": "25025",
+    "region": "Suffolk County, MA",
+    "text": "Following a hurricane event in Suffolk County, MA (FIPS 25025), our model predicts the following workforce impacts. Finance sees a 10% demand increase, peaking around month 9. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months. Media & Entertainment is projected to lose 51% of jobs, recovering in approximately 18 months. Other is projected to lose 36% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 51,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 36,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_change_pct": 10,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "hurricane_36047",
+    "disaster_type": "hurricane",
+    "fips_code": "36047",
+    "region": "Kings County, NY",
+    "text": "Following a hurricane event in Kings County, NY (FIPS 36047), our model predicts the following workforce impacts. Media & Entertainment is projected to lose 20% of jobs, recovering in approximately 12 months. Other is projected to lose 40% of jobs, recovering in approximately 18 months. Education sees a 43% demand increase, peaking around month 3. Nonprofit is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 43,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_loss_pct": 40,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 20,
+        "recovery_months": 12
+      }
+    }
+  },
+  {
+    "id": "hurricane_36061",
+    "disaster_type": "hurricane",
+    "fips_code": "36061",
+    "region": "New York County, NY",
+    "text": "Following a hurricane event in New York County, NY (FIPS 36061), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 53% of jobs, recovering in approximately 18 months. Consulting is projected to lose 46% of jobs, recovering in approximately 9 months. Education is projected to lose 78% of jobs, recovering in approximately 18 months. Energy sees a 18% demand increase, peaking around month 15. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Government is projected to lose 16% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Legal": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 89,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 78,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 53,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_loss_pct": 46,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_loss_pct": 45,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_37183",
+    "disaster_type": "hurricane",
+    "fips_code": "37183",
+    "region": "Wake County, NC",
+    "text": "Following a hurricane event in Wake County, NC (FIPS 37183), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 9 months. Other sees a 14% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Other": {
+        "job_change_pct": 14,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "hurricane_42003",
+    "disaster_type": "hurricane",
+    "fips_code": "42003",
+    "region": "Allegheny County, PA",
+    "text": "Following a hurricane event in Allegheny County, PA (FIPS 42003), our model predicts the following workforce impacts. Education sees a 77% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 77,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "hurricane_42101",
+    "disaster_type": "hurricane",
+    "fips_code": "42101",
+    "region": "Philadelphia County, PA",
+    "text": "Following a hurricane event in Philadelphia County, PA (FIPS 42101), our model predicts the following workforce impacts. Healthcare is projected to lose 29% of jobs, recovering in approximately 12 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 11% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 43% demand increase, peaking around month 9. Tech is projected to lose 95% of jobs, recovering in approximately 12 months. Manufacturing sees a 29% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 43,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 29,
+        "recovery_months": 12
+      },
+      "Manufacturing": {
+        "job_change_pct": 29,
+        "peak_month": 3
+      },
+      "Other": {
+        "job_loss_pct": 11,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_48029",
+    "disaster_type": "hurricane",
+    "fips_code": "48029",
+    "region": "Bexar County, TX",
+    "text": "Following a hurricane event in Bexar County, TX (FIPS 48029), our model predicts the following workforce impacts. Finance is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_48113",
+    "disaster_type": "hurricane",
+    "fips_code": "48113",
+    "region": "Dallas County, TX",
+    "text": "Following a hurricane event in Dallas County, TX (FIPS 48113), our model predicts the following workforce impacts. Finance is projected to lose 17% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 6% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 80% demand increase, peaking around month 3. Tech is projected to lose 48% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Nonprofit sees a 33% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 80,
+        "peak_month": 3
+      },
+      "Tech": {
+        "job_loss_pct": 48,
+        "recovery_months": 18
+      },
+      "Nonprofit": {
+        "job_change_pct": 33,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_loss_pct": 17,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_loss_pct": 6,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "hurricane_48201",
+    "disaster_type": "hurricane",
+    "fips_code": "48201",
+    "region": "Harris County, TX",
+    "text": "Following a hurricane event in Harris County, TX (FIPS 48201), our model predicts the following workforce impacts. Energy sees a 30% demand increase, peaking around month 15. Education sees a 27% demand increase, peaking around month 15. Manufacturing sees a 3% demand increase, peaking around month 3. Other sees a 12% demand increase, peaking around month 15. Tech sees a 71% demand increase, peaking around month 3. Finance sees a 60% demand increase, peaking around month 15.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 71,
+        "peak_month": 3
+      },
+      "Finance": {
+        "job_change_pct": 60,
+        "peak_month": 15
+      },
+      "Legal": {
+        "job_change_pct": 44,
+        "peak_month": 15
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 32,
+        "peak_month": 3
+      },
+      "Energy": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 27,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 12,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 8,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "hurricane_48453",
+    "disaster_type": "hurricane",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a hurricane event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Consulting sees a 93% demand increase, peaking around month 9. Finance is projected to lose 95% of jobs, recovering in approximately 12 months. Retail & Hospitality is projected to lose 95% of jobs, recovering in approximately 18 months. Tech is projected to lose 95% of jobs, recovering in approximately 18 months. Education sees a 15% demand increase, peaking around month 15. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_change_pct": 93,
+        "peak_month": 9
+      },
+      "Nonprofit": {
+        "job_change_pct": 29,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "hurricane_51760",
+    "disaster_type": "hurricane",
+    "fips_code": "51760",
+    "region": "Richmond, VA",
+    "text": "Following a hurricane event in Richmond, VA (FIPS 51760), our model predicts the following workforce impacts. Education is projected to lose 74% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 74,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_13121",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "13121",
+    "region": "Fulton County, GA",
+    "text": "Following a severe ice storm event in Fulton County, GA (FIPS 13121), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 9 months. Healthcare sees a 35% demand increase, peaking around month 9. Media & Entertainment sees a 50% demand increase, peaking around month 9. Other sees a 13% demand increase, peaking around month 15. Retail & Hospitality is projected to lose 85% of jobs, recovering in approximately 18 months. Tech is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 85,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 50,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 35,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 13,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_22071",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "22071",
+    "region": "Orleans (Parish), LA",
+    "text": "Following a severe ice storm event in Orleans (Parish), LA (FIPS 22071), our model predicts the following workforce impacts. Education sees a 19% demand increase, peaking around month 3. Other sees a 94% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 94,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 19,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_40109",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "40109",
+    "region": "Oklahoma County, OK",
+    "text": "Following a severe ice storm event in Oklahoma County, OK (FIPS 40109), our model predicts the following workforce impacts. Education sees a 66% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 66,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_48029",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "48029",
+    "region": "Bexar County, TX",
+    "text": "Following a severe ice storm event in Bexar County, TX (FIPS 48029), our model predicts the following workforce impacts. Education sees a 32% demand increase, peaking around month 9. Finance sees a 36% demand increase, peaking around month 9. Other sees a 36% demand increase, peaking around month 3.",
+    "predictions": {
+      "Finance": {
+        "job_change_pct": 36,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_change_pct": 36,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 32,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_48113",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "48113",
+    "region": "Dallas County, TX",
+    "text": "Following a severe ice storm event in Dallas County, TX (FIPS 48113), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 95% of jobs, recovering in approximately 18 months. Consulting is projected to lose 82% of jobs, recovering in approximately 9 months. Education is projected to lose 22% of jobs, recovering in approximately 9 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 29% of jobs, recovering in approximately 18 months. Manufacturing is projected to lose 39% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Construction & Real Estate": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Consulting": {
+        "job_loss_pct": 82,
+        "recovery_months": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 52,
+        "peak_month": 15
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 40,
+        "peak_month": 3
+      },
+      "Manufacturing": {
+        "job_loss_pct": 39,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_loss_pct": 29,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 27,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_48201",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "48201",
+    "region": "Harris County, TX",
+    "text": "Following a severe ice storm event in Harris County, TX (FIPS 48201), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 70% of jobs, recovering in approximately 9 months. Consulting sees a 7% demand increase, peaking around month 15. Education is projected to lose 12% of jobs, recovering in approximately 12 months. Energy sees a 13% demand increase, peaking around month 9. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Manufacturing is projected to lose 10% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 70,
+        "recovery_months": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 46,
+        "peak_month": 3
+      },
+      "Energy": {
+        "job_change_pct": 13,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_loss_pct": 12,
+        "recovery_months": 12
+      },
+      "Manufacturing": {
+        "job_loss_pct": 10,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 8,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "severe_ice_storm_48453",
+    "disaster_type": "severe_ice_storm",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a severe ice storm event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Construction & Real Estate sees a 11% demand increase, peaking around month 3. Education is projected to lose 41% of jobs, recovering in approximately 9 months. Finance is projected to lose 95% of jobs, recovering in approximately 12 months. Government is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 16% of jobs, recovering in approximately 18 months. Marketing & Creative sees a 55% demand increase, peaking around month 3.",
+    "predictions": {
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 82,
+        "peak_month": 15
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 55,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_loss_pct": 41,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 37,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 16,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 16,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06001",
+    "disaster_type": "severe_storm",
+    "fips_code": "06001",
+    "region": "Alameda County, CA",
+    "text": "Following a severe storm event in Alameda County, CA (FIPS 06001), our model predicts the following workforce impacts. Other sees a 7% demand increase, peaking around month 3. Education sees a 6% demand increase, peaking around month 3. Healthcare sees a 32% demand increase, peaking around month 3. Energy sees a 73% demand increase, peaking around month 9. Legal is projected to lose 79% of jobs, recovering in approximately 18 months. Tech sees a 14% demand increase, peaking around month 15.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 79,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_change_pct": 73,
+        "peak_month": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 41,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 32,
+        "peak_month": 3
+      },
+      "Tech": {
+        "job_change_pct": 14,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_change_pct": 7,
+        "peak_month": 3
+      },
+      "Government": {
+        "job_change_pct": 7,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 6,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06037",
+    "disaster_type": "severe_storm",
+    "fips_code": "06037",
+    "region": "Los Angeles County, CA",
+    "text": "Following a severe storm event in Los Angeles County, CA (FIPS 06037), our model predicts the following workforce impacts. Construction & Real Estate sees a 5% demand increase, peaking around month 15. Education sees a 20% demand increase, peaking around month 15. Energy sees a 51% demand increase, peaking around month 15. Finance sees a 21% demand increase, peaking around month 15. Healthcare sees a 30% demand increase, peaking around month 15. Marketing & Creative sees a 25% demand increase, peaking around month 15.",
+    "predictions": {
+      "Energy": {
+        "job_change_pct": 51,
+        "peak_month": 15
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 43,
+        "peak_month": 15
+      },
+      "Transportation": {
+        "job_change_pct": 43,
+        "peak_month": 15
+      },
+      "Nonprofit": {
+        "job_change_pct": 41,
+        "peak_month": 15
+      },
+      "Research": {
+        "job_change_pct": 40,
+        "peak_month": 15
+      },
+      "Tech": {
+        "job_change_pct": 31,
+        "peak_month": 15
+      },
+      "Consulting": {
+        "job_change_pct": 31,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06059",
+    "disaster_type": "severe_storm",
+    "fips_code": "06059",
+    "region": "Orange County, CA",
+    "text": "Following a severe storm event in Orange County, CA (FIPS 06059), our model predicts the following workforce impacts. Other sees a 7% demand increase, peaking around month 3.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 7,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06067",
+    "disaster_type": "severe_storm",
+    "fips_code": "06067",
+    "region": "Sacramento County, CA",
+    "text": "Following a severe storm event in Sacramento County, CA (FIPS 06067), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 9% of jobs, recovering in approximately 18 months. Government is projected to lose 31% of jobs, recovering in approximately 18 months. Healthcare sees a 3% demand increase, peaking around month 3. Tech is projected to lose 16% of jobs, recovering in approximately 18 months. Media & Entertainment is projected to lose 68% of jobs, recovering in approximately 18 months. Other is projected to lose 25% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Media & Entertainment": {
+        "job_loss_pct": 68,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 60,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 56,
+        "recovery_months": 9
+      },
+      "Consulting": {
+        "job_loss_pct": 43,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 31,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 31,
+        "peak_month": 3
+      },
+      "Energy": {
+        "job_change_pct": 28,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_loss_pct": 25,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06073",
+    "disaster_type": "severe_storm",
     "fips_code": "06073",
     "region": "San Diego County, CA",
-    "text": "For a major wildfire in San Diego County (FIPS 06073), our model anticipates moderate but widespread disruption. The tourism-dependent coastal economy means hospitality losses of 20% extending over 8 months. Military contractor and defense industries show resilience with less than 5% disruption. Retail declines 15% and recovers in 5 months. Construction demand surges 140% above baseline peaking at month 3. Environmental remediation (fire-specific) creates significant demand for months 3-12 as watershed and erosion management becomes critical in this region's unique geography.",
+    "text": "Following a severe storm event in San Diego County, CA (FIPS 06073), our model predicts the following workforce impacts. Healthcare is projected to lose 45% of jobs, recovering in approximately 18 months. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 46% of jobs, recovering in approximately 12 months.",
     "predictions": {
-      "Hospitality/Tourism": {"job_loss_pct": 20, "recovery_months": 8},
-      "Retail": {"job_loss_pct": 15, "recovery_months": 5},
-      "Defense/Military Contracting": {"job_loss_pct": 3, "recovery_months": 2},
-      "Construction": {"job_change_pct": 140, "peak_month": 3},
-      "Environmental Remediation": {"job_change_pct": 85, "peak_month": 6}
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 46,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_loss_pct": 45,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06075",
+    "disaster_type": "severe_storm",
+    "fips_code": "06075",
+    "region": "San Francisco County, CA",
+    "text": "Following a severe storm event in San Francisco County, CA (FIPS 06075), our model predicts the following workforce impacts. Finance sees a 12% demand increase, peaking around month 15. Legal is projected to lose 49% of jobs, recovering in approximately 9 months. Marketing & Creative sees a 23% demand increase, peaking around month 3. Media & Entertainment sees a 47% demand increase, peaking around month 3. Nonprofit sees a 53% demand increase, peaking around month 9. Other sees a 20% demand increase, peaking around month 15.",
+    "predictions": {
+      "Retail & Hospitality": {
+        "job_change_pct": 82,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 53,
+        "peak_month": 9
+      },
+      "Legal": {
+        "job_loss_pct": 49,
+        "recovery_months": 9
+      },
+      "Media & Entertainment": {
+        "job_change_pct": 47,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 46,
+        "peak_month": 15
+      },
+      "Research": {
+        "job_change_pct": 41,
+        "peak_month": 9
+      },
+      "Transportation": {
+        "job_loss_pct": 38,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 30,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "severe_storm_06085",
+    "disaster_type": "severe_storm",
+    "fips_code": "06085",
+    "region": "Santa Clara County, CA",
+    "text": "Following a severe storm event in Santa Clara County, CA (FIPS 06085), our model predicts the following workforce impacts. Healthcare sees a 33% demand increase, peaking around month 15. Manufacturing sees a 2% demand increase, peaking around month 15. Other sees a 2% demand increase, peaking around month 15. Tech is projected to lose 9% of jobs, recovering in approximately 9 months. Government sees a 17% demand increase, peaking around month 3. Retail & Hospitality sees a 16% demand increase, peaking around month 3.",
+    "predictions": {
+      "Energy": {
+        "job_loss_pct": 63,
+        "recovery_months": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 36,
+        "peak_month": 3
+      },
+      "Research": {
+        "job_change_pct": 35,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 33,
+        "peak_month": 15
+      },
+      "Legal": {
+        "job_change_pct": 31,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_loss_pct": 28,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 24,
+        "peak_month": 15
+      },
+      "Government": {
+        "job_change_pct": 17,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_11001",
+    "disaster_type": "severe_storm",
+    "fips_code": "11001",
+    "region": "District of Columbia (County-equivalent), DC",
+    "text": "Following a severe storm event in District of Columbia (County-equivalent), DC (FIPS 11001), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 9 months. Government is projected to lose 72% of jobs, recovering in approximately 18 months. Nonprofit is projected to lose 95% of jobs, recovering in approximately 9 months. Other is projected to lose 72% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Nonprofit": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      },
+      "Government": {
+        "job_loss_pct": 72,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 72,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_17031",
+    "disaster_type": "severe_storm",
+    "fips_code": "17031",
+    "region": "Cook County, IL",
+    "text": "Following a severe storm event in Cook County, IL (FIPS 17031), our model predicts the following workforce impacts. Education sees a 34% demand increase, peaking around month 15. Finance is projected to lose 37% of jobs, recovering in approximately 9 months. Tech sees a 19% demand increase, peaking around month 15. Nonprofit sees a 30% demand increase, peaking around month 3. Other sees a 11% demand increase, peaking around month 15. Construction & Real Estate sees a 33% demand increase, peaking around month 3.",
+    "predictions": {
+      "Manufacturing": {
+        "job_change_pct": 95,
+        "peak_month": 3
+      },
+      "Transportation": {
+        "job_loss_pct": 80,
+        "recovery_months": 12
+      },
+      "Legal": {
+        "job_loss_pct": 70,
+        "recovery_months": 9
+      },
+      "Finance": {
+        "job_loss_pct": 37,
+        "recovery_months": 9
+      },
+      "Education": {
+        "job_change_pct": 34,
+        "peak_month": 15
+      },
+      "Consulting": {
+        "job_loss_pct": 34,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_change_pct": 33,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 30,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_25025",
+    "disaster_type": "severe_storm",
+    "fips_code": "25025",
+    "region": "Suffolk County, MA",
+    "text": "Following a severe storm event in Suffolk County, MA (FIPS 25025), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 38% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 78% of jobs, recovering in approximately 18 months. Marketing & Creative is projected to lose 47% of jobs, recovering in approximately 18 months. Media & Entertainment is projected to lose 17% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 78,
+        "recovery_months": 18
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 47,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 38,
+        "recovery_months": 18
+      },
+      "Media & Entertainment": {
+        "job_loss_pct": 17,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_26161",
+    "disaster_type": "severe_storm",
+    "fips_code": "26161",
+    "region": "Washtenaw County, MI",
+    "text": "Following a severe storm event in Washtenaw County, MI (FIPS 26161), our model predicts the following workforce impacts. Education sees a 77% demand increase, peaking around month 9. Healthcare sees a 95% demand increase, peaking around month 9.",
+    "predictions": {
+      "Healthcare": {
+        "job_change_pct": 95,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 77,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "severe_storm_26163",
+    "disaster_type": "severe_storm",
+    "fips_code": "26163",
+    "region": "Wayne County, MI",
+    "text": "Following a severe storm event in Wayne County, MI (FIPS 26163), our model predicts the following workforce impacts. Manufacturing sees a 87% demand increase, peaking around month 15. Education sees a 58% demand increase, peaking around month 3. Finance sees a 95% demand increase, peaking around month 9.",
+    "predictions": {
+      "Finance": {
+        "job_change_pct": 95,
+        "peak_month": 9
+      },
+      "Manufacturing": {
+        "job_change_pct": 87,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 58,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_27053",
+    "disaster_type": "severe_storm",
+    "fips_code": "27053",
+    "region": "Hennepin County, MN",
+    "text": "Following a severe storm event in Hennepin County, MN (FIPS 27053), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_29510",
+    "disaster_type": "severe_storm",
+    "fips_code": "29510",
+    "region": "St. Louis, MO",
+    "text": "Following a severe storm event in St. Louis, MO (FIPS 29510), our model predicts the following workforce impacts. Education sees a 49% demand increase, peaking around month 9. Healthcare sees a 3% demand increase, peaking around month 3. Other is projected to lose 19% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 49,
+        "peak_month": 9
+      },
+      "Other": {
+        "job_loss_pct": 19,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 3,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_36061",
+    "disaster_type": "severe_storm",
+    "fips_code": "36061",
+    "region": "New York County, NY",
+    "text": "Following a severe storm event in New York County, NY (FIPS 36061), our model predicts the following workforce impacts. Other is projected to lose 51% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 51,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "severe_storm_41051",
+    "disaster_type": "severe_storm",
+    "fips_code": "41051",
+    "region": "Multnomah County, OR",
+    "text": "Following a severe storm event in Multnomah County, OR (FIPS 41051), our model predicts the following workforce impacts. Education sees a 14% demand increase, peaking around month 3. Other is projected to lose 42% of jobs, recovering in approximately 18 months. Retail & Hospitality sees a 2% demand increase, peaking around month 9. Tech sees a 38% demand increase, peaking around month 15. Healthcare sees a 25% demand increase, peaking around month 3. Nonprofit sees a 25% demand increase, peaking around month 15.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 42,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_change_pct": 41,
+        "peak_month": 15
+      },
+      "Tech": {
+        "job_change_pct": 38,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_change_pct": 25,
+        "peak_month": 3
+      },
+      "Nonprofit": {
+        "job_change_pct": 25,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 14,
+        "peak_month": 3
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 2,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "severe_storm_42003",
+    "disaster_type": "severe_storm",
+    "fips_code": "42003",
+    "region": "Allegheny County, PA",
+    "text": "Following a severe storm event in Allegheny County, PA (FIPS 42003), our model predicts the following workforce impacts. Education sees a 44% demand increase, peaking around month 3. Healthcare sees a 41% demand increase, peaking around month 3.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 44,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_change_pct": 41,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_47037",
+    "disaster_type": "severe_storm",
+    "fips_code": "47037",
+    "region": "Davidson County, TN",
+    "text": "Following a severe storm event in Davidson County, TN (FIPS 47037), our model predicts the following workforce impacts. Healthcare sees a 26% demand increase, peaking around month 3. Education sees a 34% demand increase, peaking around month 9. Other sees a 36% demand increase, peaking around month 9.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 36,
+        "peak_month": 9
+      },
+      "Education": {
+        "job_change_pct": 34,
+        "peak_month": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 26,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "severe_storm_48113",
+    "disaster_type": "severe_storm",
+    "fips_code": "48113",
+    "region": "Dallas County, TX",
+    "text": "Following a severe storm event in Dallas County, TX (FIPS 48113), our model predicts the following workforce impacts. Education sees a 52% demand increase, peaking around month 15. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Tech is projected to lose 95% of jobs, recovering in approximately 18 months. Construction & Real Estate is projected to lose 73% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Construction & Real Estate": {
+        "job_loss_pct": 73,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 52,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "severe_storm_48201",
+    "disaster_type": "severe_storm",
+    "fips_code": "48201",
+    "region": "Harris County, TX",
+    "text": "Following a severe storm event in Harris County, TX (FIPS 48201), our model predicts the following workforce impacts. Other is projected to lose 37% of jobs, recovering in approximately 9 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Energy is projected to lose 55% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Energy": {
+        "job_loss_pct": 55,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 37,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "severe_storm_48453",
+    "disaster_type": "severe_storm",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a severe storm event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Healthcare is projected to lose 31% of jobs, recovering in approximately 9 months. Other is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Tech is projected to lose 43% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Tech": {
+        "job_loss_pct": 43,
+        "recovery_months": 12
+      },
+      "Healthcare": {
+        "job_loss_pct": 31,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "severe_storm_49035",
+    "disaster_type": "severe_storm",
+    "fips_code": "49035",
+    "region": "Salt Lake County, UT",
+    "text": "Following a severe storm event in Salt Lake County, UT (FIPS 49035), our model predicts the following workforce impacts. Education sees a 52% demand increase, peaking around month 9. Finance is projected to lose 24% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 52,
+        "peak_month": 9
+      },
+      "Finance": {
+        "job_loss_pct": 24,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "severe_storm_53033",
+    "disaster_type": "severe_storm",
+    "fips_code": "53033",
+    "region": "King County, WA",
+    "text": "Following a severe storm event in King County, WA (FIPS 53033), our model predicts the following workforce impacts. Construction & Real Estate sees a 25% demand increase, peaking around month 15. Healthcare sees a 38% demand increase, peaking around month 15. Tech sees a 17% demand increase, peaking around month 9. Education sees a 33% demand increase, peaking around month 15. Other is projected to lose 5% of jobs, recovering in approximately 12 months. Finance is projected to lose 13% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Transportation": {
+        "job_change_pct": 71,
+        "peak_month": 3
+      },
+      "Consulting": {
+        "job_loss_pct": 39,
+        "recovery_months": 9
+      },
+      "Healthcare": {
+        "job_change_pct": 38,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 33,
+        "peak_month": 15
+      },
+      "Research": {
+        "job_change_pct": 32,
+        "peak_month": 3
+      },
+      "Legal": {
+        "job_loss_pct": 30,
+        "recovery_months": 9
+      },
+      "Government": {
+        "job_loss_pct": 28,
+        "recovery_months": 9
+      },
+      "Marketing & Creative": {
+        "job_change_pct": 27,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "snowstorm_11001",
+    "disaster_type": "snowstorm",
+    "fips_code": "11001",
+    "region": "District of Columbia (County-equivalent), DC",
+    "text": "Following a snowstorm event in District of Columbia (County-equivalent), DC (FIPS 11001), our model predicts the following workforce impacts. Consulting is projected to lose 95% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 95% of jobs, recovering in approximately 18 months. Government is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 95% of jobs, recovering in approximately 18 months. Legal is projected to lose 14% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Consulting": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Finance": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Government": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 74,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 51,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "snowstorm_17031",
+    "disaster_type": "snowstorm",
+    "fips_code": "17031",
+    "region": "Cook County, IL",
+    "text": "Following a snowstorm event in Cook County, IL (FIPS 17031), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Finance is projected to lose 47% of jobs, recovering in approximately 18 months. Other is projected to lose 95% of jobs, recovering in approximately 12 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 12
+      },
+      "Finance": {
+        "job_loss_pct": 47,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "snowstorm_24510",
+    "disaster_type": "snowstorm",
+    "fips_code": "24510",
+    "region": "Baltimore, MD",
+    "text": "Following a snowstorm event in Baltimore, MD (FIPS 24510), our model predicts the following workforce impacts. Healthcare is projected to lose 68% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Healthcare": {
+        "job_loss_pct": 68,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "snowstorm_25017",
+    "disaster_type": "snowstorm",
+    "fips_code": "25017",
+    "region": "Middlesex County(in (P)MSA 1120,2600,4560), MA",
+    "text": "Following a snowstorm event in Middlesex County(in (P)MSA 1120,2600,4560), MA (FIPS 25017), our model predicts the following workforce impacts. Other is projected to lose 79% of jobs, recovering in approximately 18 months. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Healthcare is projected to lose 54% of jobs, recovering in approximately 9 months. Tech is projected to lose 19% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 79,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 54,
+        "recovery_months": 9
+      },
+      "Tech": {
+        "job_loss_pct": 19,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "snowstorm_25025",
+    "disaster_type": "snowstorm",
+    "fips_code": "25025",
+    "region": "Suffolk County, MA",
+    "text": "Following a snowstorm event in Suffolk County, MA (FIPS 25025), our model predicts the following workforce impacts. Finance is projected to lose 9% of jobs, recovering in approximately 12 months. Construction & Real Estate is projected to lose 13% of jobs, recovering in approximately 9 months. Consulting is projected to lose 3% of jobs, recovering in approximately 9 months. Education is projected to lose 34% of jobs, recovering in approximately 9 months. Healthcare is projected to lose 37% of jobs, recovering in approximately 12 months. Legal is projected to lose 90% of jobs, recovering in approximately 18 months.",
+    "predictions": {
+      "Legal": {
+        "job_loss_pct": 90,
+        "recovery_months": 18
+      },
+      "Retail & Hospitality": {
+        "job_loss_pct": 50,
+        "recovery_months": 18
+      },
+      "Healthcare": {
+        "job_loss_pct": 37,
+        "recovery_months": 12
+      },
+      "Nonprofit": {
+        "job_change_pct": 37,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_loss_pct": 34,
+        "recovery_months": 9
+      },
+      "Research": {
+        "job_loss_pct": 26,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 25,
+        "recovery_months": 12
+      },
+      "Marketing & Creative": {
+        "job_loss_pct": 18,
+        "recovery_months": 18
+      }
+    }
+  },
+  {
+    "id": "snowstorm_42101",
+    "disaster_type": "snowstorm",
+    "fips_code": "42101",
+    "region": "Philadelphia County, PA",
+    "text": "Following a snowstorm event in Philadelphia County, PA (FIPS 42101), our model predicts the following workforce impacts. Education is projected to lose 95% of jobs, recovering in approximately 18 months. Other is projected to lose 95% of jobs, recovering in approximately 9 months.",
+    "predictions": {
+      "Education": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_loss_pct": 95,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "snowstorm_44007",
+    "disaster_type": "snowstorm",
+    "fips_code": "44007",
+    "region": "Providence County(in PMSA 6060,6480), RI",
+    "text": "Following a snowstorm event in Providence County(in PMSA 6060,6480), RI (FIPS 44007), our model predicts the following workforce impacts. Education sees a 78% demand increase, peaking around month 15.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 78,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "tornado_47037",
+    "disaster_type": "tornado",
+    "fips_code": "47037",
+    "region": "Davidson County, TN",
+    "text": "Following a tornado event in Davidson County, TN (FIPS 47037), our model predicts the following workforce impacts. Education sees a 38% demand increase, peaking around month 15. Healthcare is projected to lose 24% of jobs, recovering in approximately 18 months. Media & Entertainment is projected to lose 48% of jobs, recovering in approximately 18 months. Other sees a 10% demand increase, peaking around month 15.",
+    "predictions": {
+      "Media & Entertainment": {
+        "job_loss_pct": 48,
+        "recovery_months": 18
+      },
+      "Education": {
+        "job_change_pct": 38,
+        "peak_month": 15
+      },
+      "Healthcare": {
+        "job_loss_pct": 24,
+        "recovery_months": 18
+      },
+      "Other": {
+        "job_change_pct": 10,
+        "peak_month": 15
+      }
+    }
+  },
+  {
+    "id": "tropical_storm_12057",
+    "disaster_type": "tropical_storm",
+    "fips_code": "12057",
+    "region": "Hillsborough County, FL",
+    "text": "Following a tropical storm event in Hillsborough County, FL (FIPS 12057), our model predicts the following workforce impacts. Education sees a 94% demand increase, peaking around month 3. Tech sees a 95% demand increase, peaking around month 15.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 95,
+        "peak_month": 15
+      },
+      "Education": {
+        "job_change_pct": 94,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "tropical_storm_12095",
+    "disaster_type": "tropical_storm",
+    "fips_code": "12095",
+    "region": "Orange County, FL",
+    "text": "Following a tropical storm event in Orange County, FL (FIPS 12095), our model predicts the following workforce impacts. Other is projected to lose 26% of jobs, recovering in approximately 9 months. Retail & Hospitality sees a 66% demand increase, peaking around month 15. Tech sees a 79% demand increase, peaking around month 9.",
+    "predictions": {
+      "Tech": {
+        "job_change_pct": 79,
+        "peak_month": 9
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 66,
+        "peak_month": 15
+      },
+      "Other": {
+        "job_loss_pct": 26,
+        "recovery_months": 9
+      }
+    }
+  },
+  {
+    "id": "tropical_storm_37119",
+    "disaster_type": "tropical_storm",
+    "fips_code": "37119",
+    "region": "Mecklenburg County, NC",
+    "text": "Following a tropical storm event in Mecklenburg County, NC (FIPS 37119), our model predicts the following workforce impacts. Education sees a 51% demand increase, peaking around month 15. Finance sees a 43% demand increase, peaking around month 9.",
+    "predictions": {
+      "Education": {
+        "job_change_pct": 51,
+        "peak_month": 15
+      },
+      "Finance": {
+        "job_change_pct": 43,
+        "peak_month": 9
+      }
+    }
+  },
+  {
+    "id": "winter_storm_47037",
+    "disaster_type": "winter_storm",
+    "fips_code": "47037",
+    "region": "Davidson County, TN",
+    "text": "Following a winter storm event in Davidson County, TN (FIPS 47037), our model predicts the following workforce impacts. Education sees a 27% demand increase, peaking around month 3. Healthcare sees a 38% demand increase, peaking around month 3. Other sees a 70% demand increase, peaking around month 3.",
+    "predictions": {
+      "Other": {
+        "job_change_pct": 70,
+        "peak_month": 3
+      },
+      "Healthcare": {
+        "job_change_pct": 38,
+        "peak_month": 3
+      },
+      "Education": {
+        "job_change_pct": 27,
+        "peak_month": 3
+      }
+    }
+  },
+  {
+    "id": "winter_storm_48453",
+    "disaster_type": "winter_storm",
+    "fips_code": "48453",
+    "region": "Travis County, TX",
+    "text": "Following a winter storm event in Travis County, TX (FIPS 48453), our model predicts the following workforce impacts. Construction & Real Estate is projected to lose 14% of jobs, recovering in approximately 12 months. Consulting sees a 60% demand increase, peaking around month 15. Education is projected to lose 10% of jobs, recovering in approximately 18 months. Finance sees a 33% demand increase, peaking around month 3. Government sees a 56% demand increase, peaking around month 15. Healthcare sees a 7% demand increase, peaking around month 3.",
+    "predictions": {
+      "Manufacturing": {
+        "job_loss_pct": 95,
+        "recovery_months": 18
+      },
+      "Research": {
+        "job_change_pct": 63,
+        "peak_month": 9
+      },
+      "Consulting": {
+        "job_change_pct": 60,
+        "peak_month": 15
+      },
+      "Nonprofit": {
+        "job_change_pct": 60,
+        "peak_month": 9
+      },
+      "Government": {
+        "job_change_pct": 56,
+        "peak_month": 15
+      },
+      "Retail & Hospitality": {
+        "job_change_pct": 51,
+        "peak_month": 9
+      },
+      "Finance": {
+        "job_change_pct": 33,
+        "peak_month": 3
+      },
+      "Tech": {
+        "job_loss_pct": 20,
+        "recovery_months": 18
+      }
     }
   }
 ]
