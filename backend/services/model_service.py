@@ -90,7 +90,19 @@ def load_model() -> None:
     else:
         print("Model service: prophet_state_forecasts.json not found — no frequency forecast context")
 
-    # ── 3. ML model artifact (optional, for live inference fallback) ──────────
+    # ── 3. SQL engine — in-memory SQLite over both model JSONs ───────────────
+    # Resolves the actual prophet path used above
+    prophet_path_used = next((p for p in prophet_paths if p.exists()), None)
+    if prophet_path_used and predictions_path.exists():
+        try:
+            from rag.sql_engine import init_db
+            init_db(predictions_path, prophet_path_used)
+        except Exception as e:
+            print(f"Model service: SQL engine failed to init — {e}")
+    else:
+        print("Model service: SQL engine skipped (one or both JSON files missing)")
+
+    # ── 4. ML model artifact (optional, for live inference fallback) ──────────
     model_path = base / "ml" / "models" / "xgboost_model.pkl"
     if model_path.exists():
         try:
