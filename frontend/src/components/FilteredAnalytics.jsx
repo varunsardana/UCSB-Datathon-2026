@@ -7,14 +7,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  ReferenceLine,
-  BarChart,
-  Bar
 } from 'recharts';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { MOCK_DISPLACEMENT_CURVE, MOCK_INDUSTRY_IMPACT } from '../mockData';
 
 const cn = (...inputs) => twMerge(clsx(inputs));
 
@@ -97,13 +92,13 @@ const FilteredAnalyticsTabs = () => {
   // =======================================================================  
 // 3. FETCH CHART DATA
 // =======================================================================
-const [chartData, setChartData] = useState({ historical: [], forecast: [] });
+const [chartData, setChartData] = useState([]);
 const [chartLoading, setChartLoading] = useState(false);
 const [chartMeta, setChartMeta] = useState({});
 
 useEffect(() => {
   if (!selectedState || !selectedDisasterType) {
-    setChartData({ historical: [], forecast: [] });
+    setChartData([]);
     return;
   }
 
@@ -116,12 +111,12 @@ useEffect(() => {
         //Transform for Recharts - combine historical + forecast
         const combinedData = [
             ...data.historical.map(item => ({
-            date: item.date,
+            date: new Date(item.date).getTime(),
             count: item.count,
             type: 'historical'
             })),
             ...data.forecast.map(item => ({
-            date: item.date,
+            date: new Date(item.date).getTime(),
             count: item.predicted, // Use predicted as main line
             lower: item.lower,
             upper: item.upper,
@@ -169,9 +164,7 @@ useEffect(() => {
                 : "text-slate-400 border-transparent hover:text-slate-600"
             )}
           >
-            {tab === 'curve' && 'Declaration Frequency'}
-            {tab === 'impact' && 'Industry Impact'}
-            {tab === 'outlook' && 'Recovery Outlook'}
+            {tab === 'curve' && 'State and Disaster Specific Analytics'}
           </button>
         ))}
       </div>
@@ -248,6 +241,7 @@ useEffect(() => {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                     <XAxis 
                     dataKey="date" 
+                    domain={[chartData[0]?.date || 0, new Date('2030-12-31').getTime()]}
                     label={{ value: 'Date', position: 'insideBottom', offset: -5, fontSize: 10 }}
                     tick={{ fontSize: 10 }}
                     />
@@ -258,36 +252,33 @@ useEffect(() => {
                     <Tooltip 
                     contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                     />
-                    <Legend iconType="circle" wrapperStyle={{ fontSize: 10, loadingTop: 10 }} />
                     
-                    {/* Historical data - solid line */}
+                    {/* Historical data - solid green line */}
                     <Line 
                     type="monotone" 
-                    dataKey="count"
+                    data={chartData}
+                    dataKey={(entry) => entry.type === 'historical' ? entry.count : null}
                     stroke="#10b981" 
                     strokeWidth={3} 
-                    strokeDasharray={dataPoint => dataPoint.type === 'forecast' ? "5 5" : "none"}
-                    dot={dataPoint => ({
-                        fill: dataPoint.type === 'forecast' ? "#0284c7" : "#10b981",
-                        strokeWidth: 1,
-                        r: dataPoint.type === 'forecast' ? 0 : 3
-                    })}
+                    dot={true}
                     activeDot={{ r: 6 }}
-                    name="Declarations"
+                    name="Historical"
                     isAnimationActive={false}
                     />
-                    
-                    {/* Add confidence band for forecast */}
-                    {chartMeta.forecast_horizon_months && (
-                    <Area 
-                        type="monotone" 
-                        dataKey="upper" 
-                        stackId="confidence" 
-                        stroke="none" 
-                        fill="#10b981" 
-                        fillOpacity={0.1}
+
+                    {/* Forecast data - dashed blue line */}
+                    <Line 
+                    type="monotone" 
+                    data={chartData}
+                    dataKey={(entry) => entry.type === 'forecast' ? entry.count : null}
+                    stroke="#3b82f6" 
+                    strokeWidth={3} 
+                    strokeDasharray="6 6"
+                    dot={false}
+                    name="Forecast"
+                    isAnimationActive={false}
                     />
-                    )}
+
                 </LineChart>
                 </ResponsiveContainer>
             )}
