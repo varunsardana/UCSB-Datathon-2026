@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -23,6 +23,8 @@ const cn = (...inputs) => twMerge(clsx(inputs));
 const SECTOR_COLORS = [
   '#0284c5', '#10b981', '#f59e0b', '#6366f1', '#ef4444',
   '#ec4899', '#8b5cf6', '#14b8a6', '#f97316', '#84cc16',
+  '#06b6d4', '#e11d48', '#a855f7', '#d97706', '#059669',
+  '#7c3aed', '#db2777', '#0891b2', '#ca8a04', '#dc2626',
 ];
 const getSectorColor = (i) => SECTOR_COLORS[i % SECTOR_COLORS.length];
 
@@ -172,6 +174,25 @@ const AnalyticsTabs = ({
   hasRun = false,   // true once user has clicked Run Prediction at least once
 }) => {
   const [activeTab, setActiveTab] = useState('curve');
+  const [visibleSectors, setVisibleSectors] = useState(new Set());
+  const [chartHeight, setChartHeight] = useState(400);
+  const chartContainerRef = useRef(null);
+  const isResizingChart = useRef(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizingChart.current || !chartContainerRef.current) return;
+      const rect = chartContainerRef.current.getBoundingClientRect();
+      setChartHeight(Math.min(Math.max(e.clientY - rect.top, 250), 900));
+    };
+    const handleMouseUp = () => { isResizingChart.current = false; };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   // Only show mock data if the user hasn't run a prediction yet.
   // After a run with no results, show empty state instead of misleading mock data.
@@ -182,6 +203,30 @@ const AnalyticsTabs = ({
 
   const sectors = curveData.length ? Object.keys(curveData[0]).filter(k => k !== 'month') : [];
 
+  // Rank sectors by absolute impact magnitude — top 5 enabled by default
+  const rankedSectors = useMemo(() => {
+    return [...impactData]
+      .map(d => ({ name: d.industry, magnitude: Math.max(d.jobLossPct || 0, d.demandIncreasePct || 0) }))
+      .sort((a, b) => b.magnitude - a.magnitude)
+      .map(d => d.name);
+  }, [impactData]);
+
+  // Reset visible sectors to top 5 whenever data changes
+  useEffect(() => {
+    if (rankedSectors.length > 0) {
+      setVisibleSectors(new Set(rankedSectors.slice(0, 5)));
+    }
+  }, [rankedSectors]);
+
+  const toggleSector = (sector) => {
+    setVisibleSectors(prev => {
+      const next = new Set(prev);
+      if (next.has(sector)) next.delete(sector);
+      else next.add(sector);
+      return next;
+    });
+  };
+
   const biggestLoss  = [...impactData].filter(d => d.jobLossPct > 0).sort((a, b) => b.jobLossPct - a.jobLossPct)[0];
   const biggestSurge = [...impactData].filter(d => d.demandIncreasePct > 0).sort((a, b) => b.demandIncreasePct - a.demandIncreasePct)[0];
 
@@ -189,7 +234,7 @@ const AnalyticsTabs = ({
   const tabLabels = { curve: 'Displacement Curve', impact: 'Industry Impact', outlook: 'Recovery Outlook' };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+    <div ref={chartContainerRef} className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
 
       {/* Tab bar */}
       <div className="flex border-b border-slate-100 dark:border-slate-800">
@@ -224,35 +269,50 @@ const AnalyticsTabs = ({
       </div>
 
       {/* Tab content */}
-      <div className="p-6 h-[400px]">
+      <div className="p-6" style={{ height: chartHeight }}>
         {isLoading ? <LoadingSkeleton /> : (
           <>
             {/* CURVE */}
             {activeTab === 'curve' && (
               <div className="h-full flex flex-col">
-                <div className="mb-4">
-                  <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
-                    {biggestLoss && (
-                      <>
-                        <span className="font-bold" style={{ color: getSectorColor(sectors.indexOf(biggestLoss.industry)) }}>
-                          {biggestLoss.industry}
+                {/* Sector toggle chips */}
+                {sectors.length > 0 && (
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        Select Sectors
+                      </p>
+                      <span className="text-[10px] text-slate-400 italic">
+                        Showing {visibleSectors.size} of {sectors.length}
+                      </span>
+                      {visibleSectors.size === sectors.length && sectors.length <= 6 && (
+                        <span className="text-[10px] text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-0.5 rounded-full">
+                          Only {sectors.length} sectors affected in this scenario
                         </span>
-                        {' '}drops {biggestLoss.jobLossPct}% at disaster onset; recovery {biggestLoss.recoveryTime}.
-                      </>
-                    )}
-                    {biggestSurge && (
-                      <>
-                        <span className="font-bold ml-1" style={{ color: getSectorColor(sectors.indexOf(biggestSurge.industry)) }}>
-                          {biggestSurge.industry}
-                        </span>
-                        {' '}demand surges +{biggestSurge.demandIncreasePct}%.
-                      </>
-                    )}
-                    {!biggestLoss && !biggestSurge && (
-                      <span className="text-slate-400">Employment trajectory by sector over time.</span>
-                    )}
-                  </p>
-                </div>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {sectors.map((sector, i) => {
+                        const isOn = visibleSectors.has(sector);
+                        return (
+                          <button
+                            key={sector}
+                            onClick={() => toggleSector(sector)}
+                            className={cn(
+                              'text-[10px] font-semibold px-2.5 py-1 rounded-full border transition-all',
+                              isOn
+                                ? 'border-transparent text-white'
+                                : 'bg-slate-100 dark:bg-slate-800 text-slate-400 border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                            )}
+                            style={isOn ? { backgroundColor: getSectorColor(i) } : {}}
+                          >
+                            {sector}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
                 {sectors.length === 0 ? (
                   <EmptyState message="No displacement curve data for this scenario." />
                 ) : (
@@ -273,19 +333,20 @@ const AnalyticsTabs = ({
                           formatter={(v, name) => [`${v > 0 ? '+' : ''}${v}%`, name]}
                           contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                         />
-                        <Legend iconType="circle" wrapperStyle={{ fontSize: 10, paddingTop: 10 }} />
                         <ReferenceLine x={0} stroke="#ef4444" strokeDasharray="3 3"
                           label={{ value: 'Disaster', position: 'top', fontSize: 10, fill: '#ef4444' }} />
                         {sectors.map((sector, i) => (
-                          <Line
-                            key={sector}
-                            type="monotone"
-                            dataKey={sector}
-                            stroke={getSectorColor(i)}
-                            strokeWidth={i < 2 ? 3 : 2}
-                            dot={i < 2 ? { r: 4 } : false}
-                            activeDot={{ r: 6 }}
-                          />
+                          visibleSectors.has(sector) && (
+                            <Line
+                              key={sector}
+                              type="monotone"
+                              dataKey={sector}
+                              stroke={getSectorColor(i)}
+                              strokeWidth={2}
+                              dot={{ r: 3 }}
+                              activeDot={{ r: 6 }}
+                            />
+                          )
                         ))}
                       </LineChart>
                     </ResponsiveContainer>
@@ -369,9 +430,6 @@ const AnalyticsTabs = ({
                         </div>
                       </div>
 
-                      <button className="mt-4 w-full py-2 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">
-                        View Full Analysis
-                      </button>
                     </div>
                   ))}
                 </div>
@@ -379,6 +437,13 @@ const AnalyticsTabs = ({
             )}
           </>
         )}
+      </div>
+      {/* Resize handle */}
+      <div
+        className="h-3 cursor-row-resize hover:bg-primary/20 active:bg-primary/30 bg-primary/10 flex items-center justify-center gap-1 transition-colors group rounded-b-xl"
+        onMouseDown={() => { isResizingChart.current = true; }}
+      >
+        <div className="w-8 h-[3px] rounded-full bg-primary/40 group-hover:bg-primary" />
       </div>
     </div>
   );

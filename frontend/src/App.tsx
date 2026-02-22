@@ -10,6 +10,7 @@ import SidebarLeft from './components/SidebarLeft';
 import DisasterMap from './components/DisasterMap';
 import KeyMetrics from './components/KeyMetrics';
 import AnalyticsTabs, { transformPrediction } from './components/AnalyticsTabs';
+import FilteredAnalyticsTabs from './components/FilteredAnalytics';
 import AdvisorChat from './components/AdvisorChat';
 
 function cn(...inputs: any[]) {
@@ -41,7 +42,7 @@ export default function App() {
     fipsCode,
     state,
   }: {
-    disasterType: string;
+    disasterType: string | null;
     fipsCode: string | null;
     state: string | null;
   }) => {
@@ -51,15 +52,27 @@ export default function App() {
 
     try {
       let endpoint = 'http://localhost:8000/api/predict';
-      let body: Record<string, string> = { disaster_type: disasterType };
+      let body: Record<string, string> = {};
 
-      if (fipsCode) {
+      if (fipsCode && disasterType) {
+        // Specific county + disaster
+        body.disaster_type = disasterType;
         body.fips_code = fipsCode;
-      } else if (state) {
+      } else if (disasterType && state) {
+        // Disaster + state (no county)
         endpoint = 'http://localhost:8000/api/predict/by-state';
+        body.disaster_type = disasterType;
+        body.state = state;
+      } else if (disasterType && !state) {
+        // Disaster only — country-wide aggregation by sector
+        endpoint = 'http://localhost:8000/api/predict/by-disaster';
+        body.disaster_type = disasterType;
+      } else if (state && !disasterType) {
+        // State only — all disaster types aggregated
+        endpoint = 'http://localhost:8000/api/predict/by-state-all';
         body.state = state;
       } else {
-        setError('Please select a scenario from the list.');
+        setError('Please select a disaster type or state.');
         setIsLoading(false);
         return;
       }
@@ -147,7 +160,6 @@ export default function App() {
             )}
 
             <DisasterMap />
-            <KeyMetrics />
 
             {/* AnalyticsTabs receives real data from the prediction */}
             <AnalyticsTabs
@@ -158,6 +170,7 @@ export default function App() {
               region={predictionMeta.region}
               disasterType={predictionMeta.disasterType}
             />
+            <FilteredAnalyticsTabs />
           </div>
         </div>
 

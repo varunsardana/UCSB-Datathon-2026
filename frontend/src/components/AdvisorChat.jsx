@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Send, Sparkles, ChevronDown, ChevronUp, Loader2, Zap } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -53,6 +53,8 @@ const AdvisorChat = () => {
   const [liveSeconds, setLiveSeconds] = useState(0);
   const startTimeRef = useRef(null);
   const chatEndRef = useRef(null);
+  const [width, setWidth] = useState(384); // md:w-96 = 384px
+  const isResizing = useRef(false);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -71,6 +73,21 @@ const AdvisorChat = () => {
     }, 100);
     return () => clearInterval(iv);
   }, [isLoading]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizing.current) return;
+      const newWidth = window.innerWidth - e.clientX;
+      setWidth(Math.min(Math.max(newWidth, 280), 600));
+    };
+    const handleMouseUp = () => { isResizing.current = false; };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -194,7 +211,12 @@ const AdvisorChat = () => {
       .join(' · ') || 'No context set — responses will be general';
 
   return (
-    <aside className="flex w-full md:w-96 flex-col border-l border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-xl h-full">
+    <aside className="flex flex-col border-l border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-xl h-full relative" style={{ width }}>
+      {/* Resize handle */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-slate-300 active:bg-slate-400 z-10"
+        onMouseDown={() => { isResizing.current = true; }}
+      />
 
       {/* ── Header ── */}
       <div className="p-5 border-b border-slate-100 dark:border-slate-800">
@@ -203,8 +225,8 @@ const AdvisorChat = () => {
             <Sparkles size={18} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-slate-900 dark:text-white">Workforce Advisor</h3>
-            <p className="text-[10px] text-slate-500 truncate">{contextLabel}</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-base">Workforce Advisor</h3>
+            <p className="text-[11px] text-slate-500 truncate">{contextLabel}</p>
           </div>
           <button
             onClick={() => setShowContext(v => !v)}
@@ -333,7 +355,7 @@ const AdvisorChat = () => {
               key={chip}
               onClick={() => setInput(chip)}
               disabled={isLoading}
-              className="text-[10px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full hover:bg-primary/10 hover:text-primary transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+              className="text-xs font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {chip}
             </button>

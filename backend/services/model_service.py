@@ -142,15 +142,215 @@ def get_prediction(
 
 def get_prediction_by_state(disaster_type: str, state: str) -> dict | None:
     """
-    State-level fallback when user doesn't specify a FIPS code.
-    Returns the most representative entry (most sectors covered = most data).
+    State-level aggregation: average all county predictions for this
+    (disaster_type, state) combo. Same averaging logic as by-disaster.
     """
-    state_key = f"{disaster_type.lower()}_{state.upper()}"
+    st = state.upper().strip()
+    dt = disaster_type.lower().strip()
+    state_key = f"{dt}_{st}"
     entries = _precomputed_by_state.get(state_key, [])
     if not entries:
         return None
-    # Most sectors covered = most informative for the LLM
-    return max(entries, key=lambda e: len(e.get("predictions", {})))
+
+    # Aggregate sector stats across all counties
+    sector_stats: dict[str, dict[str, list]] = {}
+    for entry in entries:
+        for sector, data in entry.get("predictions", {}).items():
+            if sector not in sector_stats:
+                sector_stats[sector] = {
+                    "job_loss_pcts": [], "recovery_months": [],
+                    "job_change_pcts": [], "peak_months": [],
+                }
+            if "job_loss_pct" in data:
+                sector_stats[sector]["job_loss_pcts"].append(data["job_loss_pct"])
+                if "recovery_months" in data:
+                    sector_stats[sector]["recovery_months"].append(data["recovery_months"])
+            if "job_change_pct" in data:
+                sector_stats[sector]["job_change_pcts"].append(data["job_change_pct"])
+                if "peak_month" in data:
+                    sector_stats[sector]["peak_months"].append(data["peak_month"])
+
+    predictions = {}
+    for sector, stats in sector_stats.items():
+        losses = stats["job_loss_pcts"]
+        gains = stats["job_change_pcts"]
+        if len(losses) >= len(gains) and losses:
+            predictions[sector] = {
+                "job_loss_pct": round(sum(losses) / len(losses), 1),
+                "recovery_months": (
+                    round(sum(stats["recovery_months"]) / len(stats["recovery_months"]))
+                    if stats["recovery_months"] else 12
+                ),
+            }
+        elif gains:
+            predictions[sector] = {
+                "job_change_pct": round(sum(gains) / len(gains), 1),
+                "peak_month": (
+                    round(sum(stats["peak_months"]) / len(stats["peak_months"]))
+                    if stats["peak_months"] else 3
+                ),
+            }
+
+    dt_display = dt.replace("_", " ").title()
+    return {
+        "disaster_type": dt,
+        "fips_code": None,
+        "region": f"{st} Statewide ({len(entries)} counties)",
+        "text": (
+            f"Aggregated {dt_display} impact across {len(entries)} counties "
+            f"in {st}. Values represent statewide averages."
+        ),
+        "predictions": predictions,
+    }
+
+
+def get_prediction_by_disaster(disaster_type: str) -> dict | None:
+    """
+    Country-wide aggregation: average all pre-computed predictions for a
+    given disaster type across every county/state.
+    Returns the same shape as get_prediction() so the frontend can consume it.
+    """
+    dt = disaster_type.lower().strip()
+    entries = [e for e in _precomputed.values() if e.get("disaster_type") == dt]
+    if not entries:
+        return None
+
+    # Collect per-sector values across all entries
+    sector_stats: dict[str, dict[str, list]] = {}
+    for entry in entries:
+        for sector, data in entry.get("predictions", {}).items():
+            if sector not in sector_stats:
+                sector_stats[sector] = {
+                    "job_loss_pcts": [],
+                    "recovery_months": [],
+                    "job_change_pcts": [],
+                    "peak_months": [],
+                }
+            if "job_loss_pct" in data:
+                sector_stats[sector]["job_loss_pcts"].append(data["job_loss_pct"])
+                if "recovery_months" in data:
+                    sector_stats[sector]["recovery_months"].append(data["recovery_months"])
+            if "job_change_pct" in data:
+                sector_stats[sector]["job_change_pcts"].append(data["job_change_pct"])
+                if "peak_month" in data:
+                    sector_stats[sector]["peak_months"].append(data["peak_month"])
+
+    # Average the metrics per sector
+    predictions = {}
+    for sector, stats in sector_stats.items():
+        losses = stats["job_loss_pcts"]
+        gains = stats["job_change_pcts"]
+        # Use whichever signal appears more often (loss vs gain)
+        if len(losses) >= len(gains) and losses:
+            predictions[sector] = {
+                "job_loss_pct": round(sum(losses) / len(losses), 1),
+                "recovery_months": (
+                    round(sum(stats["recovery_months"]) / len(stats["recovery_months"]))
+                    if stats["recovery_months"] else 12
+                ),
+            }
+        elif gains:
+            predictions[sector] = {
+                "job_change_pct": round(sum(gains) / len(gains), 1),
+                "peak_month": (
+                    round(sum(stats["peak_months"]) / len(stats["peak_months"]))
+                    if stats["peak_months"] else 3
+                ),
+            }
+
+    # Collect the states covered
+    states_covered = set()
+    for entry in entries:
+        fips = str(entry.get("fips_code", ""))
+        if len(fips) >= 2:
+            st = FIPS_STATE_MAP.get(fips[:2])
+            if st:
+                states_covered.add(st)
+
+    dt_display = dt.replace("_", " ").title()
+    return {
+        "disaster_type": dt,
+        "fips_code": None,
+        "region": f"National ({len(entries)} counties, {len(states_covered)} states)",
+        "text": (
+            f"Aggregated {dt_display} impact across {len(entries)} counties "
+            f"in {len(states_covered)} states. Values represent averages."
+        ),
+        "predictions": predictions,
+    }
+
+
+def get_prediction_by_state_all(state: str) -> dict | None:
+    """
+    State-wide aggregation across ALL disaster types.
+    Returns predictions keyed by disaster type (not sector) — each disaster
+    type gets an averaged job_loss_pct / recovery_months across its sectors.
+    This lets the frontend chart lines per disaster type.
+    """
+    st = state.upper().strip()
+
+    # Find all state keys that match this state
+    matching_keys = [k for k in _precomputed_by_state if k.endswith(f"_{st}")]
+    if not matching_keys:
+        return None
+
+    predictions = {}
+    county_count = 0
+
+    for state_key in matching_keys:
+        dt = state_key.rsplit(f"_{st}", 1)[0]  # e.g. "hurricane"
+        entries = _precomputed_by_state[state_key]
+        county_count += len(entries)
+
+        # Average across all sectors in all entries for this disaster type
+        all_loss_pcts = []
+        all_recovery = []
+        all_gain_pcts = []
+        all_peak = []
+
+        for entry in entries:
+            for data in entry.get("predictions", {}).values():
+                if "job_loss_pct" in data:
+                    all_loss_pcts.append(data["job_loss_pct"])
+                    if "recovery_months" in data:
+                        all_recovery.append(data["recovery_months"])
+                if "job_change_pct" in data:
+                    all_gain_pcts.append(data["job_change_pct"])
+                    if "peak_month" in data:
+                        all_peak.append(data["peak_month"])
+
+        dt_label = dt.replace("_", " ").title()
+
+        if len(all_loss_pcts) >= len(all_gain_pcts) and all_loss_pcts:
+            predictions[dt_label] = {
+                "job_loss_pct": round(sum(all_loss_pcts) / len(all_loss_pcts), 1),
+                "recovery_months": (
+                    round(sum(all_recovery) / len(all_recovery))
+                    if all_recovery else 12
+                ),
+            }
+        elif all_gain_pcts:
+            predictions[dt_label] = {
+                "job_change_pct": round(sum(all_gain_pcts) / len(all_gain_pcts), 1),
+                "peak_month": (
+                    round(sum(all_peak) / len(all_peak))
+                    if all_peak else 3
+                ),
+            }
+
+    if not predictions:
+        return None
+
+    return {
+        "disaster_type": "all",
+        "fips_code": None,
+        "region": f"{st} ({county_count} counties, {len(predictions)} disaster types)",
+        "text": (
+            f"Aggregated impact across {len(predictions)} disaster types "
+            f"in {st}. Values are averages across all affected sectors."
+        ),
+        "predictions": predictions,
+    }
 
 
 def format_prediction_context(prediction: dict | None) -> str:

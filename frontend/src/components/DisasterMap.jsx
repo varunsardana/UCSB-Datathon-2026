@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -30,6 +30,24 @@ const getSeverityIcon = (severity) => {
 const DisasterMap = () => {
   const [disasters, setDisasters] = useState([]);
   const [selectedDisaster, setSelectedDisaster] = useState(null);
+  const [mapHeight, setMapHeight] = useState(400);
+  const isResizingMap = useRef(false);
+  const mapContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizingMap.current || !mapContainerRef.current) return;
+      const rect = mapContainerRef.current.getBoundingClientRect();
+      setMapHeight(Math.min(Math.max(e.clientY - rect.top, 200), 800));
+    };
+    const handleMouseUp = () => { isResizingMap.current = false; };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/disasters")
@@ -67,7 +85,7 @@ const DisasterMap = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-[400px] w-full bg-slate-100 dark:bg-slate-950 overflow-hidden">
+      <div ref={mapContainerRef} className="relative w-full bg-slate-100 dark:bg-slate-950 overflow-hidden" style={{ height: mapHeight }}>
         {/* Interactive map */}
         <MapContainer
           center={[37.8, -96]} // fallback center (roughly US)
@@ -160,6 +178,13 @@ const DisasterMap = () => {
             <span>Critical</span>
           </div>
         </div> */}
+      </div>
+      {/* Resize handle */}
+      <div
+        className="h-3 cursor-row-resize hover:bg-primary/20 active:bg-primary/30 bg-primary/10 flex items-center justify-center gap-1 transition-colors group"
+        onMouseDown={() => { isResizingMap.current = true; }}
+      >
+        <div className="w-8 h-[3px] rounded-full bg-primary/40 group-hover:bg-primary" />
       </div>
     </div>
   );

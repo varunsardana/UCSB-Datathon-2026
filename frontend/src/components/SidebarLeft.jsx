@@ -28,19 +28,33 @@ const STATE_NAMES = {
 };
 
 const DISASTER_LABELS = {
-  fire:         'Wildfire',
-  flood:        'Flood',
-  hurricane:    'Hurricane',
-  severe_storm: 'Severe Storm',
-  tornado:      'Tornado',
+  biological:       'Biological',
+  earthquake:       'Earthquake',
+  fire:             'Wildfire',
+  flood:            'Flood',
+  freezing:         'Freezing',
+  hurricane:        'Hurricane',
+  severe_ice_storm: 'Severe Ice Storm',
+  severe_storm:     'Severe Storm',
+  snowstorm:        'Snowstorm',
+  tornado:          'Tornado',
+  tropical_storm:   'Tropical Storm',
+  winter_storm:     'Winter Storm',
 };
 
 const DISASTER_COLORS = {
-  fire:         'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
-  flood:        'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  hurricane:    'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
-  severe_storm: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
-  tornado:      'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+  biological:       'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+  earthquake:       'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+  fire:             'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+  flood:            'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  freezing:         'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
+  hurricane:        'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+  severe_ice_storm: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300',
+  severe_storm:     'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
+  snowstorm:        'bg-slate-100 text-slate-700 dark:bg-slate-700/30 dark:text-slate-300',
+  tornado:          'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+  tropical_storm:   'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300',
+  winter_storm:     'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
 };
 
 function getStateFromFips(fipsCode) {
@@ -138,15 +152,15 @@ const SidebarLeft = ({ isOpen, toggle, onRunPrediction, isLoading = false }) => 
   };
 
   const handleRun = () => {
-    if (!selectedScenario && !selectedDisaster) return;
+    if (!selectedScenario && !selectedDisaster && !selectedState) return;
     onRunPrediction({
-      disasterType: selectedScenario?.disaster_type ?? selectedDisaster,
+      disasterType: selectedScenario?.disaster_type ?? selectedDisaster ?? null,
       fipsCode:     selectedScenario?.fips_code     ?? null,
       state:        selectedScenario?.state         ?? selectedState ?? null,
     });
   };
 
-  const canRun = (!!selectedScenario || !!selectedDisaster) && !isLoading;
+  const canRun = (!!selectedScenario || !!selectedDisaster || !!selectedState) && !isLoading;
 
   return (
     <motion.aside
@@ -157,9 +171,9 @@ const SidebarLeft = ({ isOpen, toggle, onRunPrediction, isLoading = false }) => 
       <div className="flex flex-col h-full overflow-hidden" style={{ width }}>
 
         {/* Header */}
-        <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2 flex-shrink-0">
-          <Filter size={16} className="text-slate-400" />
-          <h3 className="font-bold text-slate-900 dark:text-white text-sm">Scenario Browser</h3>
+        <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3 flex-shrink-0">
+          <Filter size={18} className="text-primary" />
+          <h3 className="font-bold text-slate-900 dark:text-white text-base">Scenario Browser</h3>
         </div>
 
         <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-5">
@@ -234,14 +248,14 @@ const SidebarLeft = ({ isOpen, toggle, onRunPrediction, isLoading = false }) => 
               </div>
 
               {/* ── Step 3: Combo browser ──────────────────────────────── */}
-              <div className="flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+              <div className="flex-1 min-h-0 flex flex-col">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex-shrink-0">
                   3 · Scenario{' '}
                   <span className="text-slate-300 font-normal normal-case tracking-normal">
                     ({filteredScenarios.length} match{filteredScenarios.length !== 1 ? 'es' : ''})
                   </span>
                 </p>
-                <div className="space-y-1 max-h-52 overflow-y-auto pr-1">
+                <div className="space-y-1 flex-1 overflow-y-scroll pr-1">
                   {filteredScenarios.length === 0 && (
                     <p className="text-[11px] text-slate-400 italic">No scenarios match your filters</p>
                   )}
@@ -299,8 +313,8 @@ const SidebarLeft = ({ isOpen, toggle, onRunPrediction, isLoading = false }) => 
               'Run Prediction'
             )}
           </button>
-          {!selectedScenario && !selectedDisaster && (
-            <p className="text-[10px] text-slate-400 mt-2 text-center">Select a scenario above</p>
+          {!selectedScenario && !selectedDisaster && !selectedState && (
+            <p className="text-[10px] text-slate-400 mt-2 text-center">Select a disaster type or state above</p>
           )}
         </div>
       </div>
