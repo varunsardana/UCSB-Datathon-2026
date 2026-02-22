@@ -22,24 +22,17 @@ Feature categories:
 import pandas as pd
 import numpy as np
 
-# ============================================================
-# 1. Load all datasets we need
-# ============================================================
 df = pd.read_csv("merged_disaster_jobs.csv", parse_dates=['incidentBeginDate'])
 fema = pd.read_csv("fema_clean.csv", parse_dates=['incidentBeginDate', 'incidentEndDate'])
 jobs = pd.read_csv("jobs_clean.csv", parse_dates=['started_at', 'ended_at'])
 print(f"Loaded {len(df)} rows")
 
-# ============================================================
-# 2. Disaster type — one-hot encoding
-# ============================================================
+# Disaster type — one-hot encoding
 disaster_dummies = pd.get_dummies(df['incidentType'], prefix='disaster')
 df = pd.concat([df, disaster_dummies], axis=1)
 print(f"Added {len(disaster_dummies.columns)} disaster type columns")
 
-# ============================================================
-# 3. Temporal features
-# ============================================================
+# Temporal features
 df['disaster_month'] = df['incidentBeginDate'].dt.month
 df['disaster_quarter'] = df['incidentBeginDate'].dt.quarter
 df['disaster_year'] = df['incidentBeginDate'].dt.year
@@ -49,9 +42,7 @@ df['month_sin'] = np.sin(2 * np.pi * df['disaster_month'] / 12)
 df['month_cos'] = np.cos(2 * np.pi * df['disaster_month'] / 12)
 print("Added temporal features (month, quarter, year, cyclical month)")
 
-# ============================================================
-# 4. Disaster duration
-# ============================================================
+# Disaster duration
 fema_dates = fema[['disasterNumber', 'fips_code', 'incidentEndDate']].drop_duplicates(
     subset=['disasterNumber', 'fips_code']
 )
@@ -64,9 +55,8 @@ df['log_duration'] = np.log1p(df['disaster_duration_days'])
 
 print(f"Added disaster duration (median: {median_duration:.0f} days)")
 
-# ============================================================
-# 5. Recent disaster history per county (VECTORIZED)
-# ============================================================
+
+# Recent disaster history per county (VECTORIZED)
 # Instead of looping row by row, we:
 #   1. Get unique disaster-fips combos from our data
 #   2. For each, count prior disasters using a merge + filter approach
@@ -104,9 +94,8 @@ df['recently_hit'] = (df['prior_disasters_2yr'] > 0).astype(int)
 
 print(f"Added disaster history (avg prior disasters in 2yr: {df['prior_disasters_2yr'].mean():.1f})")
 
-# ============================================================
-# 6. Industry sector grouping
-# ============================================================
+
+# Industry sector grouping
 sector_map = {
     # Tech
     'Computer Software': 'Tech', 'Internet': 'Tech',
@@ -197,9 +186,8 @@ df['sector_code'] = df['sector'].astype('category').cat.codes
 
 print(f"Grouped {df['industry'].nunique()} industries into {df['sector'].nunique()} sectors")
 
-# ============================================================
-# 7. Monthly exit breakdown (VECTORIZED)
-# ============================================================
+
+# Monthly exit breakdown (VECTORIZED)
 # Instead of looping 9,639 × 6 = 57,834 times, we:
 #   1. Add a month-offset column to jobs
 #   2. Merge jobs with disasters on fips + industry
@@ -212,11 +200,7 @@ print("Computing monthly exit breakdown (vectorized)...")
 disaster_keys = df[['disasterNumber', 'fips_code', 'industry', 'incidentBeginDate']].copy()
 
 # Merge jobs with disaster keys on fips + industry
-jobs_with_disaster = jobs.merge(
-    disaster_keys,
-    on=['fips_code', 'industry'],
-    how='inner'
-)
+jobs_with_disaster = jobs.merge(disaster_keys, on=['fips_code', 'industry'], how='inner')
 
 # Calculate months between disaster start and job end
 jobs_with_disaster['months_after'] = (
@@ -273,9 +257,8 @@ for i in range(1, 7):
 
 print("Added monthly exit columns (exits_month_1 through exits_month_6)")
 
-# ============================================================
-# 8. Peak exit timing
-# ============================================================
+
+# Peak exit timing
 monthly_cols_temp = [f'exits_month_{i}' for i in range(1, 7)]
 df['peak_exit_month'] = df[monthly_cols_temp].idxmax(axis=1).str.extract(r'(\d)').astype(float)
 df['peak_exits'] = df[monthly_cols_temp].max(axis=1)
@@ -289,9 +272,8 @@ df.loc[all_zero, 'immediate_impact'] = 0
 
 print("Added peak exit features (peak_exit_month, peak_exits, immediate_impact)")
 
-# ============================================================
-# 9. Scale features
-# ============================================================
+
+# Scale features
 df['exit_ratio'] = np.where(
     df['baseline_exits'] > 0,
     df['post_disaster_exits'] / df['baseline_exits'],
@@ -305,9 +287,7 @@ df['high_turnover'] = (df['baseline_exits'] > median_baseline).astype(int)
 
 print("Added scale features (exit_ratio, log_baseline, high_turnover)")
 
-# ============================================================
-# 10. Industry encoding + vulnerability
-# ============================================================
+# Industry encoding + vulnerability
 df['industry_code'] = df['industry'].astype('category').cat.codes
 
 industry_vuln = df.groupby('industry')['excess_exits'].mean().to_dict()
@@ -321,9 +301,7 @@ df['industry_frequency'] = df['industry'].map(industry_freq)
 
 print(f"Encoded {df['industry'].nunique()} industries + vulnerability scores")
 
-# ============================================================
-# 11. State / region encoding
-# ============================================================
+# State / region encoding
 df['state_code'] = df['state'].astype('category').cat.codes
 
 state_disaster_freq = df.groupby('state')['disasterNumber'].nunique().to_dict()
@@ -331,9 +309,8 @@ df['state_disaster_frequency'] = df['state'].map(state_disaster_freq)
 
 print(f"Encoded {df['state'].nunique()} states + disaster frequency")
 
-# ============================================================
-# 12. Interaction features
-# ============================================================
+
+# Interaction features
 df['disaster_x_baseline'] = df['log_baseline'] * df[disaster_dummies.columns].max(axis=1)
 df['vuln_x_baseline'] = df['industry_vulnerability'] * df['log_baseline']
 df['duration_x_baseline'] = df['log_duration'] * df['log_baseline']
@@ -341,9 +318,7 @@ df['prior_x_vulnerability'] = df['prior_disasters_2yr'] * df['industry_vulnerabi
 
 print("Added interaction features")
 
-# ============================================================
-# 13. Define feature columns vs metadata columns
-# ============================================================
+# Define feature columns vs metadata columns
 metadata_cols = [
     'disasterNumber', 'incidentType', 'declarationTitle', 'fips_code',
     'state', 'designatedArea', 'incidentBeginDate', 'incidentEndDate',
@@ -380,9 +355,7 @@ print(f"\nMonthly exit breakdown averages:")
 for col in monthly_cols:
     print(f"  {col}: {df[col].mean():.2f}")
 
-# ============================================================
-# 14. Save everything
-# ============================================================
+# Save everything
 df.to_csv("features.csv", index=False)
 print(f"\nSaved to data/features.csv ({len(df)} rows, {len(df.columns)} columns)")
 
