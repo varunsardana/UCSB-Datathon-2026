@@ -1,4 +1,4 @@
-# DisasterShift — Workforce Disruption Intelligence Platform
+# AfterShock — Workforce Disruption Intelligence Platform
 
 > **UCSB Datathon 2026** — A full-stack AI system that predicts, explains, and advises on the employment impact of natural disasters across the United States.
 
