@@ -1,0 +1,6 @@
+prophet
+statsmodels
+matplotlib
+pandas
+numpy
+scipy
