@@ -32,7 +32,7 @@
 
 ## 1. Project Overview
 
-**DisasterShift** answers a single critical question: *When a natural disaster hits, who loses their job, how many, and how long does recovery take?*
+**AfterShock** answers a single critical question: *When a natural disaster hits, who loses their job, how many, and how long does recovery take?*
 
 The platform integrates three data-driven models into one intelligent advisory system:
 
@@ -927,7 +927,7 @@ uvicorn main:app --reload --port 8000
 
 Expected startup output:
 ```
-Starting DisasterShift API...
+Starting AfterShock API...
 Loading embedding model: all-MiniLM-L6-v2...
 Embedding model ready (dim=384)
 Initializing ChromaDB at: ./chroma_db
