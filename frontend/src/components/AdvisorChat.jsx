@@ -5,8 +5,8 @@ import { twMerge } from 'tailwind-merge';
 
 const cn = (...inputs) => twMerge(clsx(inputs));
 
-// Backend base URL — FastAPI runs on 8000, Vite dev server on 3000
-const API_BASE = 'http://localhost:8000';
+// Use relative URL — Vite proxies /api/* to http://localhost:8000 (see vite.config.ts)
+const API_BASE = '';
 
 // All 50 states + DC for the context selector
 const US_STATES = [
