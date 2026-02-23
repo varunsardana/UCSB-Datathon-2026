@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   ResponsiveContainer,
   ComposedChart,
-  Line,
+  Bar,
   Area,
   XAxis,
   YAxis,
@@ -273,7 +273,7 @@ useEffect(() => {
 
                     {/* Confidence band for forecast */}
                     <Area
-                        type="monotone"
+                        type="linear"
                         dataKey="upper"
                         stroke="none"
                         fill="#3b82f6"
@@ -282,30 +282,23 @@ useEffect(() => {
                         connectNulls={false}
                     />
 
-                    {/* Historical line — solid green */}
-                    <Line
-                    type="monotone"
+                    {/* Historical — green bars */}
+                    <Bar
                     dataKey="historical"
-                    stroke="#10b981"
-                    strokeWidth={2.5}
-                    dot={{ r: 1.5 }}
-                    activeDot={{ r: 5 }}
+                    fill="#10b981"
                     name="Historical"
-                    connectNulls={false}
+                    barSize={6}
+                    radius={[2, 2, 0, 0]}
                     isAnimationActive={false}
                     />
 
-                    {/* Forecast line — dashed blue */}
-                    <Line
-                    type="monotone"
+                    {/* Forecast — blue bars */}
+                    <Bar
                     dataKey="forecast"
-                    stroke="#3b82f6"
-                    strokeWidth={2.5}
-                    strokeDasharray="6 3"
-                    dot={{ r: 1.5 }}
-                    activeDot={{ r: 5 }}
+                    fill="#3b82f6"
                     name="Forecast"
-                    connectNulls={false}
+                    barSize={6}
+                    radius={[2, 2, 0, 0]}
                     isAnimationActive={false}
                     />
                 </ComposedChart>
