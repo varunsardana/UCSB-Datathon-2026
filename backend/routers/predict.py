@@ -1,7 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from services.model_service import format_prediction_context, get_prediction
+from services.model_service import (
+    format_prediction_context,
+    get_prediction,
+    get_prediction_by_state,
+    get_prediction_by_disaster,
+    get_prediction_by_state_all,
+)
 
 router = APIRouter()
 
@@ -9,6 +15,12 @@ router = APIRouter()
 class PredictRequest(BaseModel):
     disaster_type: str
     fips_code: str
+    severity: str = "major"
+
+
+class PredictByStateRequest(BaseModel):
+    disaster_type: str
+    state: str          # 2-letter abbreviation, e.g. "FL"
     severity: str = "major"
 
 
@@ -44,6 +56,93 @@ def predict(req: PredictRequest):
             "error": "No prediction available for this scenario",
             "disaster_type": req.disaster_type,
             "fips_code": req.fips_code,
+        }
+
+    return result
+
+
+@router.post("/predict/by-state")
+def predict_by_state(req: PredictByStateRequest):
+    """
+    Return the most representative workforce disruption prediction for a
+    given (state, disaster_type) combo — useful when the user hasn't
+    specified a county-level FIPS code.
+
+    Internally calls get_prediction_by_state(), which picks the pre-computed
+    entry with the most sectors covered (most informative for the LLM and charts).
+
+    Response shape is identical to POST /predict.
+    """
+    state = req.state.upper().strip()
+
+    if len(state) != 2:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid state abbreviation '{req.state}'. Expected a 2-letter code, e.g. 'FL'.",
+        )
+
+    result = get_prediction_by_state(
+        disaster_type=req.disaster_type,
+        state=state,
+    )
+
+    if result is None:
+        return {
+            "error": "No prediction available for this state/disaster combination",
+            "disaster_type": req.disaster_type,
+            "state": state,
+        }
+
+    return result
+
+
+class PredictByDisasterRequest(BaseModel):
+    disaster_type: str
+    severity: str = "major"
+
+
+@router.post("/predict/by-disaster")
+def predict_by_disaster(req: PredictByDisasterRequest):
+    """
+    Return aggregated workforce disruption predictions across all counties
+    for a given disaster type — country-wide view.
+    """
+    result = get_prediction_by_disaster(disaster_type=req.disaster_type)
+
+    if result is None:
+        return {
+            "error": "No predictions available for this disaster type",
+            "disaster_type": req.disaster_type,
+        }
+
+    return result
+
+
+class PredictByStateAllRequest(BaseModel):
+    state: str          # 2-letter abbreviation, e.g. "FL"
+
+
+@router.post("/predict/by-state-all")
+def predict_by_state_all(req: PredictByStateAllRequest):
+    """
+    Return aggregated predictions across ALL disaster types for a given state.
+    Predictions are keyed by disaster type (not sector), letting the frontend
+    chart lines per disaster type with toggles.
+    """
+    state = req.state.upper().strip()
+
+    if len(state) != 2:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid state abbreviation '{req.state}'. Expected a 2-letter code, e.g. 'FL'.",
+        )
+
+    result = get_prediction_by_state_all(state=state)
+
+    if result is None:
+        return {
+            "error": "No predictions available for this state",
+            "state": state,
         }
 
     return result

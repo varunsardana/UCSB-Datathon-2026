@@ -1,0 +1,51 @@
+state,disaster_type,total_historical,mae,rmse,converged
+KY,Severe Storm,1355,11.288,26.368,True
+MO,Severe Storm,1342,5.534,13.993,True
+KS,Severe Storm,1024,5.681,9.443,True
+OK,Severe Storm,888,1.443,2.318,True
+TN,Severe Storm,875,3.162,7.514,True
+FL,Hurricane,856,4.53,9.397,True
+LA,Hurricane,803,3.271,6.525,True
+TX,Severe Storm,756,0.613,1.112,True
+NE,Severe Storm,750,2.577,4.371,True
+IA,Severe Storm,743,1.655,2.864,True
+IA,Flood,722,1.517,2.71,True
+MS,Severe Storm,693,2.974,5.602,True
+IN,Severe Storm,667,0.1,0.147,True
+MN,Flood,665,4.573,12.236,True
+AR,Severe Storm,660,1.224,2.479,True
+ND,Flood,613,1.231,2.259,True
+TX,Flood,610,4.811,8.522,True
+TX,Hurricane,558,1.992,4.794,True
+NC,Hurricane,551,2.463,5.983,True
+AL,Severe Storm,547,0.837,1.243,True
+KY,Flood,490,10.715,21.477,True
+OH,Severe Storm,478,0.012,0.017,True
+VA,Severe Storm,470,0.351,0.546,True
+ND,Severe Storm,466,2.452,5.587,True
+SD,Severe Storm,452,0.744,0.953,True
+SD,Flood,438,4.294,12.467,True
+MN,Severe Storm,433,0.436,0.698,True
+WV,Severe Storm,433,0.439,0.575,True
+GA,Severe Storm,422,0.269,0.427,True
+MS,Hurricane,420,0.449,1.203,True
+MO,Flood,415,1.085,1.952,True
+CA,Severe Storm,375,0.822,1.54,True
+CA,Flood,357,2.497,5.15,True
+NY,Severe Storm,349,0.203,0.257,True
+NE,Flood,345,1.172,3.519,True
+IL,Flood,323,1.279,3.367,True
+LA,Flood,310,1.605,2.821,True
+PA,Flood,304,0.125,0.389,True
+WV,Flood,304,0.398,0.856,True
+IL,Severe Storm,297,0.204,0.324,True
+AR,Flood,292,4.058,11.994,True
+WI,Severe Storm,281,0.071,0.124,True
+VA,Flood,278,0.031,0.108,True
+FL,Severe Storm,272,0.216,0.332,True
+WA,Flood,271,1.293,3.378,True
+AL,Hurricane,264,0.209,0.379,True
+WA,Severe Storm,263,0.545,1.046,True
+TN,Flood,263,4.717,15.781,True
+PA,Severe Storm,219,0.04,0.066,True
+NY,Flood,219,0.686,1.259,True

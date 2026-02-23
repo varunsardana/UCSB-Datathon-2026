@@ -18,7 +18,7 @@ Why we care about ended_at:
 import json
 import pandas as pd
 
-print("Loading job data (this takes a minute)...")
+print("Loading job data...")
 with open("../live_data_persons_history_combined.json") as f:
     data = json.load(f)
 print(f"Total people: {len(data)}")

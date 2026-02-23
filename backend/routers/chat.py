@@ -13,6 +13,7 @@ class ChatRequest(BaseModel):
     disaster_type: str | None = None
     job_title: str | None = None
     fips_code: str | None = None
+    audience_type: str | None = None
 
 
 @router.post("/chat")
@@ -32,6 +33,7 @@ async def chat(req: ChatRequest):
                 disaster_type=req.disaster_type,
                 job_title=req.job_title,
                 fips_code=req.fips_code,
+                audience_type=req.audience_type,
             ):
                 # Escape newlines inside token so SSE framing isn't broken
                 safe_token = token.replace("\n", "\\n")

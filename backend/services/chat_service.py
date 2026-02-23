@@ -2,12 +2,13 @@
 Chat service — the core RAG orchestrator.
 
 Flow per request:
-  1. Get prediction context  (pre-computed JSON → live model fallback)
-  2. Retrieve relevant KB chunks from ChromaDB
-  3. Build the augmented system prompt
-  4. Stream response via the configured LLM provider:
-       LLM_PROVIDER=local  → Ollama (gemma3:1b or any local model)
-       LLM_PROVIDER=claude → Anthropic Claude API
+  1a. Prophet forecast context   — direct file lookup, guaranteed in prompt
+  1b. XGBoost prediction context — exact fips_code → state fallback → None
+  2.  Retrieve relevant KB chunks from ChromaDB (knowledge docs + model narratives)
+  3.  Build the augmented system prompt (two named model sections + KB)
+  4.  Stream response via the configured LLM provider:
+        LLM_PROVIDER=local  → Ollama (any local model)
+        LLM_PROVIDER=claude → Anthropic Claude API
 """
 
 from typing import AsyncIterator
@@ -15,7 +16,12 @@ from typing import AsyncIterator
 from config import settings
 from rag.prompts import build_system_prompt
 from rag.retriever import retrieve
-from services.model_service import format_prediction_context, get_prediction
+from services.model_service import (
+    format_forecast_context,
+    format_prediction_context,
+    get_prediction,
+    get_prediction_by_state,
+)
 
 
 async def chat_stream(
@@ -24,18 +30,53 @@ async def chat_stream(
     disaster_type: str | None = None,
     job_title: str | None = None,
     fips_code: str | None = None,
+    audience_type: str | None = None,
 ) -> AsyncIterator[str]:
     """
     Full RAG pipeline as an async generator of text tokens.
-    Provider is selected via LLM_PROVIDER in .env (default: "local").
+
+    Both Aliza's Prophet forecast and Nikita's XGBoost prediction are injected
+    as guaranteed structured context blocks — not left to chance via ChromaDB
+    similarity search. The retriever then adds matching KB chunks on top.
     """
-    # ── Step 1: Prediction context ─────────────────────────────────────────
+
+    # ── Step 0: Detect audience upfront so we can show it in the status ─────
+    from rag.prompts import detect_audience, AUDIENCE_TYPES
+    resolved_audience = (
+        audience_type if audience_type in AUDIENCE_TYPES
+        else detect_audience(job_title, message)
+    )
+    audience_label = resolved_audience.replace("_", " ").title()
+    yield f"__status__Mode: {audience_label} guidance"
+
+    # ── Step 1a: Prophet forecast context ────────────────────────────────────
+    location_label = f"{state} {disaster_type}".strip() if (state or disaster_type) else "your area"
+    yield f"__status__Fetching disaster frequency forecast for {location_label}..."
+    forecast_context = format_forecast_context(state, disaster_type)
+
+    # ── Step 1b: XGBoost prediction context ──────────────────────────────────
+    yield "__status__Analyzing sector-level employment impact..."
     prediction = None
-    if disaster_type and fips_code:
-        prediction = get_prediction(disaster_type, fips_code)
+    if disaster_type:
+        if fips_code:
+            prediction = get_prediction(disaster_type, fips_code)
+        if prediction is None and state:
+            prediction = get_prediction_by_state(disaster_type, state)
     prediction_context = format_prediction_context(prediction)
 
-    # ── Step 2: Retrieve relevant KB chunks ────────────────────────────────
+    # ── Step 2: SQL structured query (rankings, comparisons, portfolio) ─────
+    sql_context = ""
+    try:
+        from rag.query_router import route_and_query
+        sql_result = route_and_query(message, state=state, disaster_type=disaster_type)
+        if sql_result:
+            yield "__status__Running structured data analysis..."
+            sql_context = sql_result
+    except Exception as e:
+        print(f"SQL routing skipped: {e}")
+
+    # ── Step 3: Retrieve KB chunks from ChromaDB ─────────────────────────────
+    yield "__status__Searching knowledge base for programs and resources..."
     chunks = retrieve(
         query=message,
         state=state,
@@ -43,16 +84,21 @@ async def chat_stream(
         top_k=settings.top_k,
     )
 
-    # ── Step 3: Build system prompt ────────────────────────────────────────
+    # ── Step 4: Build augmented system prompt ─────────────────────────────────
     system_prompt = build_system_prompt(
+        forecast_context=forecast_context,
         prediction_context=prediction_context,
         retrieved_docs=chunks,
         state=state,
         disaster_type=disaster_type,
         job_title=job_title,
+        question=message,
+        audience_type=resolved_audience,
+        sql_context=sql_context,
     )
 
-    # ── Step 4: Stream via chosen provider ─────────────────────────────────
+    # ── Step 5: Stream via chosen provider ────────────────────────────────────
+    yield "__status__Generating response..."
     provider = settings.llm_provider.lower()
 
     if provider == "local":
