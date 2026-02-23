@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
   ResponsiveContainer,
   ComposedChart,
-  Bar,
+  Line,
   Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
+  ReferenceLine,
 } from 'recharts';
 
 const FilteredAnalyticsTabs = () => {
@@ -124,43 +125,24 @@ useEffect(() => {
         const response = await fetch(`http://localhost:8000/api/forecast/chart?state=${selectedState}&disaster_type=${selectedDisasterType}`);
         const data = await response.json();
         
-        // Aggregate monthly data to yearly for a cleaner chart
-        const yearlyHistorical = {};
-        data.historical.forEach(item => {
-          const year = item.date.split('-')[0];
-          if (!yearlyHistorical[year]) yearlyHistorical[year] = 0;
-          yearlyHistorical[year] += item.count;
-        });
-
-        const yearlyForecast = {};
-        const yearlyUpper = {};
-        data.forecast.forEach(item => {
-          const year = item.date.split('-')[0];
-          if (!yearlyForecast[year]) { yearlyForecast[year] = 0; yearlyUpper[year] = 0; }
-          yearlyForecast[year] += item.predicted;
-          yearlyUpper[year] += item.upper;
-        });
-
-        // Build combined yearly data with bridge point
-        const histYears = Object.keys(yearlyHistorical).sort();
-        const forecastYears = Object.keys(yearlyForecast).sort();
-        const lastHistYear = histYears[histYears.length - 1];
-
+        // Monthly granularity — historical as line, forecast as area with confidence band
+        const lastHist = data.historical[data.historical.length - 1];
         const combinedData = [
-          ...histYears.map(year => ({
-            date: year,
-            historical: Math.round(yearlyHistorical[year] * 10) / 10,
+          ...data.historical.map(item => ({
+            date: item.date,
+            historical: item.count,
           })),
-          // Bridge point so lines connect
-          ...(lastHistYear ? [{
-            date: lastHistYear,
-            forecast: Math.round(yearlyHistorical[lastHistYear] * 10) / 10,
-            upper: Math.round(yearlyHistorical[lastHistYear] * 10) / 10,
+          // Bridge point so forecast connects to last historical value
+          ...(lastHist ? [{
+            date: lastHist.date,
+            historical: lastHist.count,
+            forecast: lastHist.count,
+            confidence: [lastHist.count, lastHist.count],
           }] : []),
-          ...forecastYears.map(year => ({
-            date: year,
-            forecast: Math.round(yearlyForecast[year] * 10) / 10,
-            upper: Math.round(yearlyUpper[year] * 10) / 10,
+          ...data.forecast.map(item => ({
+            date: item.date,
+            forecast: Math.round(item.predicted * 100) / 100,
+            confidence: [Math.round((item.lower ?? 0) * 100) / 100, Math.round(item.upper * 100) / 100],
           })),
         ];
 
@@ -190,6 +172,27 @@ useEffect(() => {
     setSelectedDisasterType(e.target.value);
   };
 
+  // Log scale toggle
+  const [logScale, setLogScale] = useState(false);
+
+  // For log scale: shift zeros to a small value so log doesn't break
+  const displayData = useMemo(() => {
+    if (!logScale) return chartData;
+    return chartData.map(d => ({
+      ...d,
+      historical: d.historical != null ? Math.max(d.historical, 0.1) : d.historical,
+      forecast: d.forecast != null ? Math.max(d.forecast, 0.1) : d.forecast,
+      confidence: d.confidence ? [Math.max(d.confidence[0], 0.1), Math.max(d.confidence[1], 0.1)] : d.confidence,
+    }));
+  }, [chartData, logScale]);
+
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const formatDate = (dateStr) => {
+    if (!dateStr || !dateStr.includes('-')) return dateStr || '';
+    const [year, month] = dateStr.split('-');
+    return `${MONTH_NAMES[parseInt(month, 10) - 1]} ${year}`;
+  };
+
   return (
     <div className="mt-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
       {/* Header */}
@@ -199,7 +202,7 @@ useEffect(() => {
           <p className="text-xs text-slate-500">Prophet time-series forecast of FEMA disaster declarations</p>
         </div>
 
-        {/* Inline filters */}
+        {/* Inline filters + log toggle */}
         <div className="flex items-center gap-3">
           <div>
             <select
@@ -237,6 +240,16 @@ useEffect(() => {
               )}
             </select>
           </div>
+          <button
+            onClick={() => setLogScale(prev => !prev)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+              logScale
+                ? 'bg-primary/10 border-primary/30 text-primary'
+                : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400'
+            }`}
+          >
+            {logScale ? 'Log' : 'Linear'}
+          </button>
         </div>
       </div>
 
@@ -254,51 +267,67 @@ useEffect(() => {
                 </div>
             ) : (
                 <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={chartData}>
+                <ComposedChart data={displayData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" strokeOpacity={0.3} />
                     <XAxis
                     dataKey="date"
-                    tick={{ fontSize: 11, fill: '#94a3b8' }}
-                    interval={0}
+                    tick={{ fontSize: 9, fill: '#94a3b8' }}
+                    tickFormatter={(d) => d?.split?.('-')?.[0] ?? d}
+                    interval={Math.max(Math.floor(displayData.length / 12), 1)}
                     />
                     <YAxis
-                    label={{ value: 'Declarations per Year', angle: -90, position: 'insideLeft', dy: 55, fontSize: 10, fill: '#94a3b8' }}
+                    scale={logScale ? 'log' : 'auto'}
+                    domain={logScale ? [0.1, 'auto'] : [0, 'auto']}
+                    allowDataOverflow={logScale}
+                    label={{ value: `Declarations / month${logScale ? ' (log)' : ''}`, angle: -90, position: 'insideLeft', dy: 55, fontSize: 10, fill: '#94a3b8' }}
                     tick={{ fontSize: 10, fill: '#94a3b8' }}
                     />
                     <Tooltip
+                    labelFormatter={formatDate}
+                    formatter={(value, name) => {
+                      if (name === '95% Confidence') return [Array.isArray(value) ? `${value[0]} – ${value[1]}` : value, name];
+                      return [`${value} declarations`, name];
+                    }}
                     contentStyle={{ borderRadius: '8px', border: '1px solid #334155', backgroundColor: '#1e293b', color: '#e2e8f0', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.3)' }}
-                    labelStyle={{ color: '#94a3b8' }}
+                    labelStyle={{ color: '#94a3b8', marginBottom: 4 }}
                     />
                     <Legend iconType="circle" wrapperStyle={{ fontSize: 11, paddingTop: 8, color: '#94a3b8' }} />
 
-                    {/* Confidence band for forecast */}
+                    {/* Confidence band — shaded region between lower and upper */}
                     <Area
                         type="linear"
-                        dataKey="upper"
+                        dataKey="confidence"
                         stroke="none"
                         fill="#3b82f6"
-                        fillOpacity={0.08}
-                        name="Upper Bound"
+                        fillOpacity={0.15}
+                        name="95% Confidence"
                         connectNulls={false}
+                        isAnimationActive={false}
                     />
 
-                    {/* Historical — green bars */}
-                    <Bar
-                    dataKey="historical"
-                    fill="#10b981"
-                    name="Historical"
-                    barSize={6}
-                    radius={[2, 2, 0, 0]}
+                    {/* Forecast — filled blue area */}
+                    <Area
+                    type="linear"
+                    dataKey="forecast"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                    fill="#3b82f6"
+                    fillOpacity={0.25}
+                    name="Forecast"
+                    connectNulls={false}
                     isAnimationActive={false}
                     />
 
-                    {/* Forecast — blue bars */}
-                    <Bar
-                    dataKey="forecast"
-                    fill="#3b82f6"
-                    name="Forecast"
-                    barSize={6}
-                    radius={[2, 2, 0, 0]}
+                    {/* Historical — solid green line (monthly) */}
+                    <Line
+                    type="linear"
+                    dataKey="historical"
+                    stroke="#10b981"
+                    strokeWidth={1.5}
+                    dot={false}
+                    activeDot={{ r: 4, fill: '#10b981' }}
+                    name="Historical"
+                    connectNulls={false}
                     isAnimationActive={false}
                     />
                 </ComposedChart>
